@@ -28,6 +28,14 @@ export default function Footer() {
           <h4 className="text-xs font-semibold uppercase text-text-muted tracking-wider mb-3">More Game Guides</h4>
           <div className="flex flex-wrap gap-3 text-xs">
             <a
+              href="https://olden-era-guide-tau.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-text-muted hover:text-accent transition-colors"
+            >
+              Olden Era Guide
+            </a>
+            <a
               href="https://dispatch-guide-sigma.vercel.app"
               target="_blank"
               rel="noopener noreferrer"
