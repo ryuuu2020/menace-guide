@@ -45,7 +45,10 @@ export default function RootLayout({
         />
       </head>
       <body className="font-body min-h-screen flex flex-col">
-        {children}
+        <div className="flex-1">{children}</div>
+        <footer className="text-center py-4 border-t border-gray-800">
+          <a href="https://afdian.com/a/gameguidehub" target="_blank" rel="noopener noreferrer" className="text-xs text-gray-500 hover:text-gray-300 transition-colors">❤️ Support Us</a>
+        </footer>
 
         <Script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} />
         <Script
