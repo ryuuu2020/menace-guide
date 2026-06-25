@@ -390,18 +390,7 @@ export default function HomePage() {
                 >
                   ❤️ Support Us
                 </a>
-                <a
-                  href="https://amazon.com/s?k=gaming+gear&tag=gameguidehub-20"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[11px] font-mono text-text-muted hover:text-text-secondary transition-colors"
-                >
-                  Shop Gaming Gear
-                </a>
               </div>
-              <p className="text-[10px] font-mono text-text-muted/50 mt-1">
-                As an Amazon Associate we earn from qualifying purchases.
-              </p>
             </div>
 
             <p className="text-center text-[10px] font-mono text-text-muted mt-4">
