@@ -1,85 +1,145 @@
 @import "tailwindcss";
 
-:root {
-  --color-bg: #0A0A0F;
-  --color-surface: #141420;
-  --color-surface-hover: #1C1C2C;
-  --color-text: #E8E8F0;
-  --color-text-muted: #8888A0;
-  --color-border: #2A2A3A;
-  --color-accent: #F0B400;
-  --color-accent-secondary: #00D4AA;
-  --color-danger: #E04040;
-}
-
 @theme {
-  --color-bg: var(--color-bg);
-  --color-surface: var(--color-surface);
-  --color-surface-hover: var(--color-surface-hover);
-  --color-text: var(--color-text);
-  --color-muted: var(--color-text-muted);
-  --color-border: var(--color-border);
-  --color-accent: var(--color-accent);
-  --color-accent-secondary: var(--color-accent-secondary);
-  --color-danger: var(--color-danger);
-  --font-heading: "Orbitron", sans-serif;
+  --color-abyss: #0d1117;
+  --color-abyss-light: #161b22;
+  --color-tactical-blue: #58a6ff;
+  --color-tactical-blue-dim: #388bfd;
+  --color-warning-orange: #db6d28;
+  --color-grid-line: #21262d;
+  --color-text-primary: #e6edf3;
+  --color-text-secondary: #8b949e;
+  --color-text-muted: #484f58;
+  --color-border-subtle: #30363d;
+  --color-terminal-green: #3fb950;
+  --color-terminal-red: #f85149;
+  --font-display: "Orbitron", sans-serif;
   --font-body: "Inter", sans-serif;
   --font-mono: "JetBrains Mono", monospace;
+  --font-size-stat: 1.75rem;
+  --font-size-stat--line-height: 1.2;
+  --font-size-stat--font-weight: 600;
+  --animate-blink-cursor: blink-cursor 1s step-end infinite;
+  --animate-pulse-subtle: pulse-subtle 2s ease-in-out infinite;
+
+  @keyframes blink-cursor {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+  @keyframes pulse-subtle {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
 }
 
-body {
-  background: var(--color-bg);
-  color: var(--color-text);
-  font-family: var(--font-body);
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background: var(--color-abyss);
+    color: var(--color-text-primary);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #30363d;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #484f58;
+  }
 }
 
-/* Custom utility classes */
-.accent-glow {
-  text-shadow: 0 0 10px rgba(240, 180, 0, 0.3);
+@layer components {
+  .cursor-blink::after {
+    content: '_';
+    color: var(--color-tactical-blue);
+    animation: blink-cursor 1s step-end infinite;
+  }
+
+  .data-row {
+    border-top: 1px solid var(--color-grid-line);
+    transition: background-color 150ms;
+  }
+  .data-row:hover {
+    background: var(--color-abyss-light);
+  }
+
+  .stat-card {
+    background: var(--color-abyss-light);
+    border: 1px solid var(--color-border-subtle);
+    padding: 1rem;
+  }
+
+  .sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    transition: color 150ms, border-color 150ms;
+    border-left: 2px solid transparent;
+    text-decoration: none;
+  }
+  .sidebar-link:hover {
+    color: var(--color-text-primary);
+    border-left-color: var(--color-tactical-blue);
+  }
+  .sidebar-link.active {
+    color: var(--color-tactical-blue);
+    border-left-color: var(--color-tactical-blue);
+    background: color-mix(in srgb, var(--color-tactical-blue) 5%, transparent);
+  }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.125rem 0.5rem;
+    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    border: 1px solid var(--color-border-subtle);
+    color: var(--color-text-secondary);
+  }
+
+  .terminal-block {
+    background: #0a0e13;
+    border: 1px solid var(--color-border-subtle);
+    padding: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    color: var(--color-terminal-green);
+  }
+
+  .section-divider {
+    border-top: 1px solid var(--color-grid-line);
+    margin: 2rem 0;
+  }
 }
 
-.card-hover {
-  transition: all 0.2s ease;
-}
-
-.card-hover:hover {
-  border-color: var(--color-accent);
-  background: var(--color-surface-hover);
-}
-
-/* FAQ snippet styles */
-.faq-snippets details {
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  margin-bottom: 8px;
-  padding: 12px 16px;
-  background: var(--color-surface);
-}
-
-.faq-snippets summary {
-  cursor: pointer;
-  font-weight: 500;
-  color: var(--color-text);
-  transition: color 0.15s;
-}
-
-.faq-snippets summary:hover {
-  color: var(--color-accent);
-}
-
-.faq-snippets p {
-  margin-top: 8px;
-  font-size: 0.875rem;
-  color: var(--color-text-muted);
-  line-height: 1.6;
-}
-
-/* Breadcrumb styles */
-.breadcrumb a {
-  color: var(--color-text-muted);
-  transition: color 0.15s;
-}
-
-.breadcrumb a:hover {
-  color: var(--color-accent);
+@layer utilities {
+  .bg-tactical-grid {
+    background-image:
+      linear-gradient(rgba(48,54,61,0.25) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(48,54,61,0.25) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
 }

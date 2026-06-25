@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import { SITE_TITLE, SITE_DESCRIPTION, SITE_URL } from "@/lib/data";
 
 const GA_ID = "G-ET6778V62K";
@@ -14,6 +12,9 @@ export const metadata: Metadata = {
   },
   description: SITE_DESCRIPTION,
   metadataBase: new URL(SITE_URL),
+  verification: {
+    google: "google4cd6cdf221ea7b0b",
+  },
   openGraph: {
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
@@ -32,19 +33,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="font-heading-orbitron font-body-inter font-mono-jetbrains">
+    <html lang="en">
       <head>
+        <meta name="google-site-verification" content="google4cd6cdf221ea7b0b" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
           rel="stylesheet"
         />
       </head>
-      <body className="min-h-screen flex flex-col antialiased bg-bg text-text">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+      <body className="font-body min-h-screen flex flex-col">
+        {children}
 
         <Script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} />
         <Script
