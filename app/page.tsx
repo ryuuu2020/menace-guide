@@ -143,6 +143,11 @@ export default function HomePage() {
           <div className="max-w-6xl mx-auto space-y-6">
             {/* ===== Hero Section ===== */}
             <section className="bg-abyss-light border border-border-subtle p-6 lg:p-8">
+              <img
+                src="/hero.jpg"
+                alt="MENACE"
+                className="w-full h-48 lg:h-64 object-cover rounded mb-6"
+              />
               <h1 className="font-display text-2xl lg:text-3xl font-bold tracking-tight text-text-primary">
                 <span className="text-tactical-blue">MENACE</span> Guide
               </h1>
