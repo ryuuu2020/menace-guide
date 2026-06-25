@@ -376,6 +376,14 @@ export default function HomePage() {
                 >
                   Dispatch Guide
                 </a>
+                <a
+                  href="https://tabletop-tavern-guide.vercel.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[11px] font-mono text-text-muted hover:text-tactical-blue transition-colors"
+                >
+                  Tabletop Tavern Guide
+                </a>
               </div>
             </div>
 
