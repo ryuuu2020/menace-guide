@@ -45,6 +45,18 @@ export default function Footer() {
             </a>
           </div>
         </div>
+        <div className="mt-6 pt-4 border-t border-border">
+          <h4 className="text-xs font-semibold text-text-muted mb-2 tracking-wide uppercase">Support This Guide</h4>
+          <div className="flex flex-wrap gap-3 text-xs">
+            <a href="https://buymeacoffee.com/solarpunkguides" target="_blank" rel="noopener" className="text-text-muted hover:text-accent transition-colors inline-flex items-center gap-1">
+              ☕ Buy Me a Coffee
+            </a>
+            <a href="https://amazon.com/s?k=gaming+gear&tag=gameguidehub-20" target="_blank" rel="noopener" className="text-text-muted hover:text-accent transition-colors inline-flex items-center gap-1">
+              🎮 Shop Gaming Gear
+            </a>
+          </div>
+          <p className="text-xs text-text-muted/50 mt-2">As an Amazon Associate we earn from qualifying purchases.</p>
+        </div>
       </div>
     </footer>
   );
