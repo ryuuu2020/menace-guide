@@ -388,7 +388,7 @@ export default function HomePage() {
                   rel="noopener noreferrer"
                   className="text-[11px] font-mono text-tactical-blue hover:text-tactical-blue-dim transition-colors"
                 >
-                  SUPPORT ON AFDIAN
+                  ❤️ Support Us
                 </a>
                 <a
                   href="https://amazon.com/s?k=gaming+gear&tag=gameguidehub-20"
