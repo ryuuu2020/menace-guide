@@ -1,6 +1,12 @@
 import Link from 'next/link';
 
 const FACTS = [
+      {
+    date: '2026-06-26',
+    title: 'SL Update 1 Now Live — First Major MENACE Content Drop',
+    content:
+      'Overhype Studios and Hooded Horse released SL Update 1, the first major content expansion since MENACE entered Early Access in February 2026. Dev Diary #48 previewed the highlights: new squad leader abilities, expanded faction diplomacy trees, and rebalanced armored vehicle combat. SL Update 1 introduces Convoy Interception — a new mission type where players ambush MENACE supply lines in real-time before transitioning to turn-based tactical combat. The update also adds 3 new weapon variants (including a heavy flamethrower), 2 new mech chassis options for the O.C.I. ship upgrade tree, and a reworked Black Market economy offering rare faction-exclusive equipment at premium prices. Balance changes: light vehicles receive a 15% HP buff while heavy mechs get a slight movement range nerf. A fresh campaign start is required to access all new content — existing saves will not trigger the new mission types.',
+  },
   {
     date: '2026-06-25',
     title: 'MENACE Continues to Grow in Early Access',
