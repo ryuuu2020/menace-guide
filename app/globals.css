@@ -1,145 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 @import "tailwindcss";
 
+/* ============================================
+   Design: sentry
+   Generated from awesome-design-md
+   ============================================ */
+
 @theme {
-  --color-abyss: #0d1117;
-  --color-abyss-light: #161b22;
-  --color-tactical-blue: #58a6ff;
-  --color-tactical-blue-dim: #388bfd;
-  --color-warning-orange: #db6d28;
-  --color-grid-line: #21262d;
-  --color-text-primary: #e6edf3;
-  --color-text-secondary: #8b949e;
-  --color-text-muted: #484f58;
-  --color-border-subtle: #30363d;
-  --color-terminal-green: #3fb950;
-  --color-terminal-red: #f85149;
-  --font-display: "Orbitron", sans-serif;
-  --font-body: "Inter", sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
-  --font-size-stat: 1.75rem;
-  --font-size-stat--line-height: 1.2;
-  --font-size-stat--font-weight: 600;
-  --animate-blink-cursor: blink-cursor 1s step-end infinite;
-  --animate-pulse-subtle: pulse-subtle 2s ease-in-out infinite;
-
-  @keyframes blink-cursor {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-  }
-  @keyframes pulse-subtle {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.7; }
-  }
+  --color-abyss: #1f1633;
+  --color-abyss-light: #150f23;
+  --color-abyss-elevated: #2a1d42;
+  --color-accent-primary: #6a5fc1;
+  --color-accent-primary-dim: #5848a8;
+  --color-accent-primary-glow: rgba(106,95,193,0.15);
+  --color-accent-secondary: #c2ef4e;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #e5e7eb;
+  --color-text-muted: #8882a8;
+  --color-border-subtle: #362d59;
+  --color-border-strong: #584674;
 }
 
-@layer base {
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-  }
-
-  html {
-    scroll-behavior: smooth;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  body {
-    background: var(--color-abyss);
-    color: var(--color-text-primary);
-    font-family: var(--font-body);
-    -webkit-font-smoothing: antialiased;
-  }
-
-  ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-  }
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #30363d;
-    border-radius: 3px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #484f58;
-  }
+/* Body defaults */
+body {
+  background-color: #1f1633;
+  color: #ffffff;
+  font-family: 'Rubik', system-ui, sans-serif;
 }
 
-@layer components {
-  .cursor-blink::after {
-    content: '_';
-    color: var(--color-tactical-blue);
-    animation: blink-cursor 1s step-end infinite;
-  }
-
-  .data-row {
-    border-top: 1px solid var(--color-grid-line);
-    transition: background-color 150ms;
-  }
-  .data-row:hover {
-    background: var(--color-abyss-light);
-  }
-
-  .stat-card {
-    background: var(--color-abyss-light);
-    border: 1px solid var(--color-border-subtle);
-    padding: 1rem;
-  }
-
-  .sidebar-link {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.5rem 0.75rem;
-    font-size: 0.875rem;
-    color: var(--color-text-secondary);
-    transition: color 150ms, border-color 150ms;
-    border-left: 2px solid transparent;
-    text-decoration: none;
-  }
-  .sidebar-link:hover {
-    color: var(--color-text-primary);
-    border-left-color: var(--color-tactical-blue);
-  }
-  .sidebar-link.active {
-    color: var(--color-tactical-blue);
-    border-left-color: var(--color-tactical-blue);
-    background: color-mix(in srgb, var(--color-tactical-blue) 5%, transparent);
-  }
-
-  .tag {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.125rem 0.5rem;
-    font-size: 0.75rem;
-    font-family: var(--font-mono);
-    border: 1px solid var(--color-border-subtle);
-    color: var(--color-text-secondary);
-  }
-
-  .terminal-block {
-    background: #0a0e13;
-    border: 1px solid var(--color-border-subtle);
-    padding: 1rem;
-    font-family: var(--font-mono);
-    font-size: 0.875rem;
-    color: var(--color-terminal-green);
-  }
-
-  .section-divider {
-    border-top: 1px solid var(--color-grid-line);
-    margin: 2rem 0;
-  }
+::selection {
+  background-color: var(--color-accent-primary);
+  color: #1f1633;
 }
 
-@layer utilities {
-  .bg-tactical-grid {
-    background-image:
-      linear-gradient(rgba(48,54,61,0.25) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(48,54,61,0.25) 1px, transparent 1px);
-    background-size: 32px 32px;
-  }
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #362d59;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #8882a8;
 }
