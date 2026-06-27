@@ -2,6 +2,12 @@ import Link from 'next/link';
 
 const FACTS = [
       {
+    date: '2026-06-27',
+    title: 'MENACE Patch v0.7.6+19301 Live — Latest Stability and Balance Pass',
+    content:
+      'Overhype Studios shipped MENACE patch v0.7.6+19301 on June 25, continuing their aggressive post-launch update cadence — this is the 19th patch since the September 2025 demo and the 8th since Early Access launched in February 2026. Key improvements in this build include additional stability fixes for late-game saves with large unit counts, balance adjustments to several overperforming unit types, and AI behavior improvements for flanking maneuvers. The v0.7.x series has been focused on polishing the experience after the major v0.7.0 content drop in April, which added new missions, units, and systems. For new players considering picking up MENACE during the Steam Summer Sale, the current build is the most stable version yet — the team has been shipping weekly patches addressing community-reported issues with impressive consistency. The official wiki now has detailed patch breakdowns for every version, making it easy to track what has changed since you last played.',
+  },
+  {
     date: '2026-06-26',
     title: 'SL Update 1 Now Live — First Major MENACE Content Drop',
     content:
@@ -42,16 +48,7 @@ export default function NewsPage() {
 
         <div className="space-y-6">
           {FACTS.map((item, i) => (
-            <article className="news-item mb-8 p-6 rounded-xl border" style={{ borderColor: 'var(--color-border, #333)' }}>
-  <div className="flex items-center gap-3 mb-3">
-    <span className="text-xs font-mono opacity-60">2026-06-27</span>
-    <span className="text-xs px-2 py-0.5 rounded font-semibold uppercase tracking-wide" style={{ backgroundColor: 'rgba(217,148,58,0.15)', color: 'var(--color-accent, #d4943a)' }}>Update</span>
-  </div>
-  <h2 className="text-xl font-bold mb-3">MENACE Patch v0.7.6+19301 Live — Latest Stability and Balance Pass</h2>
-  <p className="text-sm leading-relaxed opacity-80">Overhype Studios shipped MENACE patch v0.7.6+19301 on June 25, continuing their aggressive post-launch update cadence — this is the 19th patch since the September 2025 demo and the 8th since Early Access launched in February 2026. Key improvements in this build include additional stability fixes for late-game saves with large unit counts, balance adjustments to several overperforming unit types, and AI behavior improvements for flanking maneuvers. The v0.7.x series has been focused on polishing the experience after the major v0.7.0 content drop in April, which added new missions, units, and systems. For new players considering picking up MENACE during the Steam Summer Sale, the current build is the most stable version yet — the team has been shipping weekly patches addressing community-reported issues with impressive consistency. The official wiki now has detailed patch breakdowns for every version, making it easy to track what has changed since you last played.</p>
-</article>
-
-<article
+            <article
               key={i}
               className="border border-border-subtle bg-[#0a0e13] hover:border-tactical-blue/20 transition-colors"
             >
