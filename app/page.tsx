@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { squadLeaders, beginnerTips } from '@/lib/data';
 
 const QUICK_LINKS = [
@@ -25,9 +26,12 @@ export default function HomePage() {
       <div className="max-w-6xl mx-auto space-y-6">
         {/* ===== Hero Section ===== */}
         <section className="bg-abyss-light border border-border-subtle p-6 lg:p-8">
-          <img
+          <Image
             src="/hero.jpg"
             alt="MENACE"
+            width={460}
+            height={215}
+            priority
             className="w-full h-48 lg:h-64 object-cover rounded mb-6"
           />
           <h1 className="font-display text-2xl lg:text-3xl font-bold tracking-tight text-text-primary">
