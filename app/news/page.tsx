@@ -26,6 +26,12 @@ const FACTS = [
       'MENACE launched on Steam Early Access in February 2026. Available on PC via Steam, GOG, Epic Games Store, and Microsoft Store. The game features squad-based tactical combat, faction relationships, O.C.I. ship upgrades, Black Market trading, and the ongoing campaign against the MENACE threat.',
   },
 ];
+export const metadata = {
+  title: "MENACE NEWS & UPDATES — Complete Guide (2026)",
+  description:
+    "About MENACE — Early Access tactical RPG from Overhype Studios",
+};
+
 
 export default function NewsPage() {
   return (
