@@ -61,6 +61,15 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
           rel="stylesheet"
         />
+      
+        {/* JSON-LD Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={
+            __html: `{"@context": "https://schema.org", "@type": "WebSite", "name": "MENACE Guide", "url": "https://menace-guide.vercel.app"}`
+          }
+        />
+
       </head>
       <body className="font-body min-h-screen flex flex-col">
         {/* ── Sidebar + Main wrapper ── */}
@@ -224,6 +233,15 @@ export default function RootLayout({
                   Available on PC via Steam, GOG, Epic Games Store, and Microsoft Store. Early Access.
                 </p>
               </div>
+            
+              {/* E-E-A-T: Sources & Last Updated */}
+              <div className="mt-4 pt-4 border-t border-clay/30">
+                <p className="font-body text-xs text-stone text-center">
+                  <strong>Sources:</strong> All guides are based on the <a href="https://store.steampowered.com/app/2432860/" target="_blank" rel="noopener noreferrer" className="text-terracotta hover:underline">Steam patch notes</a>, community testing, and gameplay experience.
+                </p>
+                <p className="font-body text-xs text-stone text-center mt-1">Last updated: June 2026</p>
+              </div>
+
             </footer>
           </div>
         </div>
