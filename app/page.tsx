@@ -18,11 +18,8 @@ function getTierColor(tier: string): string {
   }
 }
 export const metadata = {
-  title: "MENACE MENACE Guide — Complete Guide (2026)",
-  description:
-    "The complete strategy guide for MENACE — the sci-fi tactical RPG from the creators
-            of Battle Brothers. Squad leader tier lists, faction breakdowns, weapon stats,
-            vehicle loadou...",
+  title: "MENACE Guide — Complete Strategy Guide (2026)",
+  description: "The complete strategy guide for MENACE — the sci-fi tactical RPG from the creators of Battle Brothers. Squad leader tier lists, faction breakdowns, weapon stats, and vehicle loadouts.",
 };
 
 

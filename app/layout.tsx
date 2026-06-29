@@ -65,9 +65,9 @@ export default function RootLayout({
         {/* JSON-LD Structured Data */}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={
+          dangerouslySetInnerHTML={{
             __html: `{"@context": "https://schema.org", "@type": "WebSite", "name": "MENACE Guide", "url": "https://menace-guide.vercel.app"}`
-          }
+          }}
         />
 
       </head>

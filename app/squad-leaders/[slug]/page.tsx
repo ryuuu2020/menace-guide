@@ -20,14 +20,6 @@ export async function generateMetadata({
     description: `${leader.name} complete squad leader guide: ${leader.tagline}. Base stats (AGI ${leader.agi}, WS ${leader.ws}), ${leader.uniquePerk} perk, best weapons, armor, pairings, and strategy tips.`,
   };
 }
-export const metadata = {
-  title: "MENACE {leader.name}
-              
-                {leader.tier}-Tier — Complete Guide (2026)",
-  description:
-    "{leader.tagline}",
-};
-
 
 export default async function SquadLeaderDetailPage({
   params,
