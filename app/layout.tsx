@@ -3,6 +3,8 @@ import Script from "next/script";
 import Link from "next/link";
 import "./globals.css";
 import { SITE_TITLE, SITE_DESCRIPTION, SITE_URL } from "@/lib/data";
+import SchemaMarkup from '@/shared/SchemaMarkup';
+
 
 const GA_ID = "G-ET6778V62K";
 

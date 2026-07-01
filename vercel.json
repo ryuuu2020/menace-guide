@@ -1,3 +1,17 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "menace-guide.vercel.app"
+        }
+      ],
+      "destination": "https://menace.gguidehub.com/$1",
+      "permanent": true
+    }
+  ],
+  "version": 2
 }

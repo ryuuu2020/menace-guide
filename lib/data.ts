@@ -7,7 +7,7 @@
 export const SITE_TITLE = "MENACE Guide — Squad Leaders, Factions & Tactics Wiki";
 export const SITE_DESCRIPTION =
   "The ultimate MENACE game guide: complete squad leader tier list with stats and perks, faction strategies, weapon breakdowns, vehicle loadouts, combat tactics, black market tips, and beginner walkthrough. From Overhype Studios, creators of Battle Brothers.";
-export const SITE_URL = "https://menace-guide.com";
+export const SITE_URL = "https://menace.gguidehub.com";
 
 // ============================================================
 // SQUAD LEADERS (11 total)
