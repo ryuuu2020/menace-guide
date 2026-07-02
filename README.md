@@ -1,36 +1,32 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MENACE Guide
 
-## Getting Started
+> Squad leaders, tactics, Black Market, O.C.I. upgrades, and faction strategy guide for MENACE by Overhype Studios.
 
-First, run the development server:
+## 🌐 Live Site
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+**[menace.gguidehub.com](https://menace.gguidehub.com)**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎮 About MENACE
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Steam**: [Store Page](https://store.steampowered.com/app/2432860/)
+- **Guide Type**: Unofficial fan-made strategy guide and wiki
+- **Built with**: Next.js + Vercel
+- **Part of**: [GameGuideHub](https://gguidehub.com) network
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📋 Site Features
 
-## Learn More
+- Dark theme optimized for gaming sessions
+- FAQ with detailed game-specific Q&A
+- Beginner guides for new players
+- Data tables with accurate game stats
+- Tier lists ranking characters, builds, and strategies
+- Schema markup for Google Rich Results
+- Responsive design for desktop and mobile
 
-To learn more about Next.js, take a look at the following resources:
+## 🔗 Network
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This site is part of the **GameGuideHub** network of 20 indie and strategy game guide sites. Visit [gguidehub.com](https://gguidehub.com) to explore all games.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+*Unofficial fan site. Not affiliated with the game developers or publishers. All game assets and trademarks belong to their respective owners.*
