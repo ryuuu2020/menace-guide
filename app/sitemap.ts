@@ -3,7 +3,7 @@ import { squadLeaders } from "@/lib/data";
 
 export const dynamic = "force-static";
 
-const BASE_URL = "https://menace-guide.vercel.app";
+const BASE_URL = "https://menace.gguidehub.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages: MetadataRoute.Sitemap = [
