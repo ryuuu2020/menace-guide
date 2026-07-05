@@ -136,8 +136,8 @@ export default function RootLayout({
               <div className="flex-1" />
 
               {/* Support Us link */}
-              <a href="https://afdian.com/a/gameguidehub" target="_blank" rel="noopener noreferrer" className="text-[11px] font-mono text-text-muted hover:text-tactical-blue transition-colors mr-3">
-                ❤️ Support Us
+              <a href="https://app.unifans.io/c/ryu2020" target="_blank" rel="noopener noreferrer" className="text-[11px] font-mono text-text-muted hover:text-tactical-blue transition-colors mr-3">
+                Support us on UniFans
               </a>
 
               {/* ONLINE indicator */}
@@ -224,12 +224,12 @@ export default function RootLayout({
                 <div className="mt-4 pt-4 border-t border-grid-line">
                   <div className="flex flex-wrap gap-4 items-center">
                     <a
-                      href="https://afdian.com/a/gameguidehub"
+                      href="https://app.unifans.io/c/ryu2020"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-[11px] font-mono text-tactical-blue hover:text-tactical-blue-dim transition-colors"
                     >
-                      ❤️ Support Us
+                      Support us on UniFans
                     </a>
                   </div>
                 </div>

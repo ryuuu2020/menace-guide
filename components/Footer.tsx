@@ -48,8 +48,8 @@ export default function Footer() {
         <div className="mt-6 pt-4 border-t border-border">
           <h4 className="text-xs font-semibold text-text-muted mb-2 tracking-wide uppercase">Support This Guide</h4>
           <div className="flex flex-wrap gap-3 text-xs">
-            <a href="https://afdian.com/a/gameguidehub" target="_blank" rel="noopener" className="text-text-muted hover:text-accent transition-colors inline-flex items-center gap-1">
-              ❤️ Support Us
+            <a href="https://app.unifans.io/c/ryu2020" target="_blank" rel="noopener" className="text-text-muted hover:text-accent transition-colors inline-flex items-center gap-1">
+              Support us on UniFans
             </a>
           </div>
         </div>
