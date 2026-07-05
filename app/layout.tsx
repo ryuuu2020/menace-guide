@@ -158,6 +158,9 @@ export default function RootLayout({
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                   <div className="text-[11px] font-mono text-text-muted">
                     <span>&copy; {new Date().getFullYear()} MENACE Guide. </span>
+              <span className="font-body text-sm text-stone">
+                Part of the <a href="https://gguidehub.com" className="text-stone hover:text-bark underline underline-offset-2 transition-colors">GameGuideHub</a> network
+              </span>
                     <span className="text-text-muted/50">
                       Unofficial fan guide for MENACE by Overhype Studios / Hooded Horse.
                     </span>
