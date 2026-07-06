@@ -137,6 +137,7 @@ export default function RootLayout({
 
               {/* Support Us link */}
               <a href="https://app.unifans.io/c/ryu2020" target="_blank" rel="noopener noreferrer" className="text-[11px] font-mono text-text-muted hover:text-tactical-blue transition-colors mr-3">
+                <a href="https://store.steampowered.com/app/2432860/?curator_clanid=46198091/?curator_clanid=46198091" target="_blank" rel="noopener noreferrer" className="steam-buy-btn">Buy MENACE on Steam</a>
                 Support us on UniFans
               </a>
 
@@ -159,6 +160,9 @@ export default function RootLayout({
                   <div className="text-[11px] font-mono text-text-muted">
                     <span>&copy; {new Date().getFullYear()} MENACE Guide. </span>
               <span className="font-body text-sm text-stone">
+                <div className="steam-buy-footer">
+                  <a href="https://store.steampowered.com/app/2432860/?curator_clanid=46198091/?curator_clanid=46198091" target="_blank" rel="noopener noreferrer" className="steam-buy-link">Get MENACE on Steam</a>
+                </div>
                 Part of the <a href="https://gguidehub.com" className="text-stone hover:text-bark underline underline-offset-2 transition-colors">GameGuideHub</a> network
               </span>
                     <span className="text-text-muted/50">
@@ -242,7 +246,7 @@ export default function RootLayout({
               {/* E-E-A-T: Sources & Last Updated */}
               <div className="mt-4 pt-4 border-t border-clay/30">
                 <p className="font-body text-xs text-stone text-center">
-                  <strong>Sources:</strong> All guides are based on the <a href="https://store.steampowered.com/app/2432860/" target="_blank" rel="noopener noreferrer" className="text-terracotta hover:underline">Steam patch notes</a>, community testing, and gameplay experience.
+                  <strong>Sources:</strong> All guides are based on the <a href="https://store.steampowered.com/app/2432860/?curator_clanid=46198091/?curator_clanid=46198091" target="_blank" rel="noopener noreferrer" className="text-terracotta hover:underline">Steam patch notes</a>, community testing, and gameplay experience.
                 </p>
                 <p className="font-body text-xs text-stone text-center mt-1">Last updated: June 2026</p>
               </div>
