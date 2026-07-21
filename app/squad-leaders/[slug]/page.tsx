@@ -16,9 +16,31 @@ export async function generateMetadata({
   const leader = getSquadLeaderBySlug(slug);
   if (!leader) return { title: "Not Found" };
   return {
-    title: `${leader.name} Guide — Stats, Perk & Best Loadout`,
-    description: `${leader.name} complete squad leader guide: ${leader.tagline}. Base stats (AGI ${leader.agi}, WS ${leader.ws}), ${leader.uniquePerk} perk, best weapons, armor, pairings, and strategy tips.`,
+    title: `${leader.name} Guide — Use This Leader When the Campaign Burden Fits`,
+    description:
+      `${leader.name} guide focused on role fit, campaign burden, pairings, and when this squad leader helps or strains a MENACE run.`,
   };
+}
+
+function getPickFrame(leader: ReturnType<typeof getSquadLeaderBySlug>) {
+  if (!leader) return [];
+  return [
+    {
+      title: "What This Leader Adds",
+      body:
+        leader.description,
+    },
+    {
+      title: "What the Perk Usually Means",
+      body:
+        `${leader.uniquePerk}: ${leader.perkDescription}`,
+    },
+    {
+      title: "Why You Still Need a Fit Check",
+      body:
+        "This page is not a fake stat-and-loadout sheet. A strong commander still becomes the wrong pick when the mission, squad package, or campaign burden is asking a different question.",
+    },
+  ];
 }
 
 export default async function SquadLeaderDetailPage({
@@ -31,141 +53,85 @@ export default async function SquadLeaderDetailPage({
   if (!leader) notFound();
 
   const { prev, next } = getAdjacentSquadLeaders(slug);
-  const maxStat = 100;
+  const pickFrame = getPickFrame(leader);
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-12">
-      {/* Breadcrumb */}
       <nav className="breadcrumb flex items-center gap-2 text-sm text-text-muted mb-6">
-        <Link href="/" className="hover:text-accent">Home</Link>
+        <Link href="/" className="hover:text-accent">
+          Home
+        </Link>
         <span>/</span>
-        <Link href="/squad-leaders" className="hover:text-accent">Squad Leaders</Link>
+        <Link href="/squad-leaders" className="hover:text-accent">
+          Squad Leaders
+        </Link>
         <span>/</span>
         <span className="text-text">{leader.name}</span>
       </nav>
 
-      {/* Header Card */}
       <div
         className="p-6 rounded-xl border border-border bg-surface mb-8"
         style={{ borderLeftWidth: "4px", borderLeftColor: leader.color }}
       >
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold font-heading">
-              {leader.name}
-              <span className="ml-3 text-sm px-2 py-0.5 rounded bg-accent/10 text-accent font-mono">
-                {leader.tier}-Tier
-              </span>
-            </h1>
+            <p className="text-[11px] font-mono uppercase tracking-[0.2em] text-text-muted mb-2">
+              Leader Fit
+            </p>
+            <h1 className="text-2xl sm:text-3xl font-extrabold font-heading">{leader.name}</h1>
             <p className="text-text-muted mt-1">{leader.tagline}</p>
-            <p className="text-xs text-text-muted mt-1">{leader.faction} &middot; Supply Cost: {leader.supplyCost}</p>
+            <p className="text-xs text-text-muted mt-2">{leader.faction}</p>
           </div>
-          <div className="text-right">
+          <div className="max-w-xs">
             <div className="text-sm text-accent font-semibold">{leader.uniquePerk}</div>
-            <div className="text-xs text-text-muted mt-1 max-w-xs">{leader.perkDescription}</div>
+            <div className="text-xs text-text-muted mt-1">{leader.perkDescription}</div>
           </div>
         </div>
       </div>
 
-      {/* Two-column layout */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Sidebar — Stats */}
         <aside className="lg:col-span-1 space-y-6">
           <div className="p-5 rounded-xl border border-border bg-surface">
-            <h2 className="font-bold font-heading text-sm mb-4">Base Stats</h2>
-            <div className="space-y-3">
-              {[
-                { label: "AGI (Agility)", value: leader.agi, desc: "Action Points" },
-                { label: "WS (Weapon Skill)", value: leader.ws, desc: "Accuracy" },
-                { label: "VAL (Valour)", value: leader.val, desc: "Discipline" },
-                { label: "TOUG (Toughness)", value: leader.toug, desc: "Damage Reduction" },
-                { label: "VIT (Vitality)", value: leader.vit, desc: "Hitpoints" },
-                { label: "PREC (Precision)", value: leader.prec, desc: "Critical Chance" },
-                { label: "POS (Positioning)", value: leader.pos, desc: "Defense" },
-              ].map((stat) => (
-                <div key={stat.label}>
-                  <div className="flex justify-between text-xs mb-1">
-                    <span className="text-text-muted">{stat.label}</span>
-                    <span className="font-mono text-accent">{stat.value}</span>
-                  </div>
-                  <div className="w-full h-1.5 rounded-full bg-surface-hover">
-                    <div
-                      className="h-full rounded-full"
-                      style={{
-                        width: `${(stat.value / maxStat) * 100}%`,
-                        backgroundColor: stat.value >= 70 ? "var(--color-accent)" : stat.value >= 50 ? "var(--color-accent-secondary)" : "#666",
-                      }}
-                    />
-                  </div>
-                </div>
+            <h2 className="font-bold font-heading text-sm mb-3">Use This Leader When</h2>
+            <ul className="space-y-2">
+              {leader.strengths.map((item, i) => (
+                <li key={i} className="text-sm text-text-muted flex gap-2">
+                  <span className="text-accent flex-shrink-0">+</span>
+                  <span>{item}</span>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
 
           <div className="p-5 rounded-xl border border-border bg-surface">
-            <h2 className="font-bold font-heading text-sm mb-3">Growth & Cost</h2>
-            <div className="space-y-2 text-sm">
-              <div className="flex justify-between">
-                <span className="text-text-muted">Growth Potential</span>
-                <span className="font-mono text-accent-secondary">{leader.growthPotential}/10</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-text-muted">Supply Cost</span>
-                <span className="font-mono">{leader.supplyCost}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-text-muted">Faction</span>
-                <span>{leader.faction}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-text-muted">Tier</span>
-                <span className="font-mono font-bold text-accent">{leader.tier}</span>
-              </div>
-            </div>
+            <h2 className="font-bold font-heading text-sm mb-3">Watch For</h2>
+            <ul className="space-y-2">
+              {leader.weaknesses.map((item, i) => (
+                <li key={i} className="text-sm text-text-muted flex gap-2">
+                  <span className="text-warning-orange flex-shrink-0">-</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </aside>
 
-        {/* Main Content */}
         <div className="lg:col-span-2 space-y-8">
-          {/* Description */}
-          <section>
-            <h2 className="text-xl font-bold font-heading mb-3">Overview</h2>
-            <p className="text-sm text-text-muted leading-relaxed">{leader.description}</p>
+          <section className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {pickFrame.map((card) => (
+              <div key={card.title} className="p-5 rounded-xl border border-border bg-surface">
+                <h2 className="font-semibold text-sm mb-2">{card.title}</h2>
+                <p className="text-sm text-text-muted leading-relaxed">{card.body}</p>
+              </div>
+            ))}
           </section>
 
-          {/* Strengths & Weaknesses */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="p-4 rounded-xl border border-accent-secondary/30 bg-accent-secondary/5">
-              <h3 className="font-semibold text-sm text-accent-secondary mb-2">Strengths</h3>
-              <ul className="space-y-1.5">
-                {leader.strengths.map((s, i) => (
-                  <li key={i} className="text-xs text-text-muted flex gap-2">
-                    <span className="text-accent-secondary flex-shrink-0">+</span> {s}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="p-4 rounded-xl border border-red-500/20 bg-red-500/5">
-              <h3 className="font-semibold text-sm text-red-400 mb-2">Weaknesses</h3>
-              <ul className="space-y-1.5">
-                {leader.weaknesses.map((w, i) => (
-                  <li key={i} className="text-xs text-text-muted flex gap-2">
-                    <span className="text-red-400 flex-shrink-0">-</span> {w}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          {/* Best Loadout */}
           <section className="p-5 rounded-xl border border-border bg-surface">
-            <h3 className="font-semibold text-sm text-accent mb-2">Best Loadout</h3>
-            <p className="text-xs text-text-muted leading-relaxed">{leader.bestLoadout}</p>
-          </section>
-
-          {/* Best Pairings */}
-          <section>
-            <h3 className="font-semibold text-sm mb-2">Best Pairings</h3>
+            <h2 className="font-semibold text-sm mb-3">Best Pairings</h2>
+            <p className="text-sm text-text-muted leading-relaxed mb-4">
+              Pairings matter because a leader solves one burden better when the surrounding squad
+              package stops asking them to cover everything alone.
+            </p>
             <div className="flex flex-wrap gap-2">
               {leader.bestPairings.map((name) => {
                 const paired = squadLeaders.find((s) => s.name === name);
@@ -173,22 +139,23 @@ export default async function SquadLeaderDetailPage({
                   <Link
                     key={name}
                     href={`/squad-leaders/${paired.slug}`}
-                    className="text-xs px-3 py-1.5 rounded-lg border border-border bg-surface hover:border-accent hover:text-accent transition-colors"
+                    className="text-xs px-3 py-1.5 rounded-lg border border-border bg-surface-hover hover:border-accent hover:text-accent transition-colors"
                   >
                     {name}
                   </Link>
                 ) : (
-                  <span key={name} className="text-xs px-3 py-1.5 rounded-lg border border-border bg-surface">{name}</span>
+                  <span key={name} className="text-xs px-3 py-1.5 rounded-lg border border-border bg-surface-hover">
+                    {name}
+                  </span>
                 );
               })}
             </div>
           </section>
 
-          {/* FAQ */}
           <section>
-            <h3 className="font-semibold text-sm mb-3">
-              <span className="text-accent">#</span> Frequently Asked Questions
-            </h3>
+            <h2 className="font-semibold text-sm mb-3">
+              <span className="text-accent">#</span> FAQ
+            </h2>
             <div className="faq-snippets">
               {leader.faq.map((item, i) => (
                 <details key={i}>
@@ -199,14 +166,13 @@ export default async function SquadLeaderDetailPage({
             </div>
           </section>
 
-          {/* Prev/Next Navigation */}
           <nav className="mt-12 flex justify-between gap-4 pt-6 border-t border-border">
             {prev ? (
               <Link
                 href={`/squad-leaders/${prev.slug}`}
                 className="text-sm text-text-muted hover:text-accent transition-colors"
               >
-                &larr; {prev.name} ({prev.tier}-Tier)
+                &larr; {prev.name}
               </Link>
             ) : (
               <div />
@@ -216,7 +182,7 @@ export default async function SquadLeaderDetailPage({
                 href={`/squad-leaders/${next.slug}`}
                 className="text-sm text-text-muted hover:text-accent transition-colors text-right"
               >
-                {next.name} ({next.tier}-Tier) &rarr;
+                {next.name} &rarr;
               </Link>
             ) : (
               <div />

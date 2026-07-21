@@ -1,10 +1,104 @@
 import type { Metadata } from "next";
-import { ociUpgrades } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "O.C.I. Ship Upgrades — TCRN Impetus Systems",
-  description: "Complete MENACE O.C.I. upgrades guide: Electronics (intel), Weapons (orbital strikes), Hull (sustainability). Best upgrade path and faction-specific variants.",
+  title: "MENACE OCI Upgrades Guide — Buy Ship Support for the Ground Problem You Actually Have",
+  description:
+    "A practical MENACE OCI upgrades guide covering electronics, weapons, and hull support, plus when each branch is actually worth funding based on your campaign state.",
 };
+
+const ociBranches = [
+  {
+    branch: "Electronics",
+    strongestFor:
+      "Campaigns losing to uncertainty, bad mission reads, or tactical openings that begin with too little information.",
+    buyWhen:
+      "You need cleaner deployment decisions and more reliable early control.",
+    weakWhen:
+      "The ground roster already sees enough, but cannot convert the information into safe wins.",
+  },
+  {
+    branch: "Weapons",
+    strongestFor:
+      "Missions where one controlled burst of force can break the pressure pattern decisively.",
+    buyWhen:
+      "Your squads already create enough stability to turn support damage into a real swing.",
+    weakWhen:
+      "The campaign is still failing before support fire even matters.",
+  },
+  {
+    branch: "Hull and sustain",
+    strongestFor:
+      "Runs that are winning ugly and paying too much long-term damage between operations.",
+    buyWhen:
+      "Attrition, repair pressure, or operational wear is becoming the strategic tax.",
+    weakWhen:
+      "You buy sustain before solving the mission errors that are causing the damage in the first place.",
+  },
+];
+
+const upgradeRules = [
+  {
+    title: "Ship support should follow the ground problem",
+    body:
+      "The best OCI branch is the one that changes what the next few missions feel like for your actual squads. Buying a prestigious branch too early is just expensive drift.",
+  },
+  {
+    title: "Information usually pays back first",
+    body:
+      "When the campaign still contains too many bad reads, electronics support improves more decisions than raw firepower does.",
+  },
+  {
+    title: "Weapons shine after stability exists",
+    body:
+      "Support damage is most valuable once your squads can already survive long enough to capitalize on it. Before that, it often feels stronger on paper than in campaign impact.",
+  },
+  {
+    title: "Sustain is not a substitute for discipline",
+    body:
+      "Hull-side recovery matters, but it should not become an excuse for taking sloppy, expensive engagements repeatedly.",
+  },
+];
+
+const campaignStates = [
+  {
+    state: "Too many bad first contacts",
+    prioritize: "Electronics first",
+    reason: "Cleaner reads prevent the kind of early miscommitment that costs whole missions.",
+  },
+  {
+    state: "Stable squads, one hard target keeps stalling missions",
+    prioritize: "Weapons support next",
+    reason: "A well-timed force spike is worth more once the ground plan can already hold.",
+  },
+  {
+    state: "Operations are successful but too expensive",
+    prioritize: "Hull and sustain",
+    reason: "Campaign tempo improves when ugly wins stop damaging the next three missions.",
+  },
+  {
+    state: "Everything still feels underbuilt",
+    prioritize: "Do not split too broadly",
+    reason: "Half-funding all three trees usually produces impressive menus and weak outcomes.",
+  },
+];
+
+const faqs = [
+  {
+    question: "What should I upgrade first in OCI?",
+    answer:
+      "Usually electronics, because better reads improve more campaign decisions than prestige firepower does in the early and mid game.",
+  },
+  {
+    question: "When are weapons upgrades actually worth it?",
+    answer:
+      "When your squads are already coherent enough to turn support damage into a decisive shift instead of into a flashy but non-saving effect.",
+  },
+  {
+    question: "What is the most common OCI mistake?",
+    answer:
+      "Buying the branch that sounds coolest instead of the branch that changes the current campaign bottleneck.",
+  },
+];
 
 export default function OCIUpgradesPage() {
   return (
@@ -12,77 +106,77 @@ export default function OCIUpgradesPage() {
       <h1 className="text-3xl sm:text-4xl font-extrabold font-heading mb-2">
         O.C.I. <span className="text-accent">Upgrades</span>
       </h1>
-      <p className="text-text-muted mb-10 max-w-2xl">
-        Upgrade the TCRN Impetus with O.C.I. (Orbital Command Interface) components. Three upgrade
-        trees — Electronics, Weapons, and Hull — each dramatically affecting your campaign strategy.
+      <p className="text-text-muted mb-10 max-w-3xl">
+        This page is not a fake fixed upgrade path. OCI investment in MENACE should serve the ground
+        campaign you actually have: uncertain reads, stalled breaches, or expensive attrition. The
+        best branch is the one that changes the next several operations, not the one with the most
+        dramatic tooltip.
       </p>
 
-      <div className="faq-snippets mb-8">
-        <h2 className="text-xl font-bold mb-4 font-heading"><span className="text-accent">#</span> FAQ</h2>
-        <details>
-          <summary>What should I upgrade first?</summary>
-          <p>Electronics absolutely first. Knowing enemy composition before deploying is game-changing — you can tailor your squad loadout to counter specific threats. Intel reveals enemy types, positions, and sometimes weak points.</p>
-        </details>
-        <details>
-          <summary>Are faction-specific O.C.I. upgrades worth it?</summary>
-          <p>Yes — they cost more components but provide significantly stronger effects. Zayn-Beecher upgrades offer economic bonuses. DICE upgrades provide superior intel. The Backbone upgrades enhance combat capabilities. Worth waiting for if you&apos;re committed to a faction path.</p>
-        </details>
-        <details>
-          <summary>How do orbital strikes work?</summary>
-          <p>Unlocked through Weapons O.C.I. They don&apos;t cost AP and have limited uses per mission. However, they take a full turn to arrive — enemies see the target zone and will try to escape. Suppress enemies in the zone to prevent escape.</p>
-        </details>
+      <div className="overflow-x-auto mb-8">
+        <table className="w-full text-left border border-border text-sm">
+          <thead className="bg-surface">
+            <tr>
+              <th className="p-3 border border-border">Branch</th>
+              <th className="p-3 border border-border">Strongest For</th>
+              <th className="p-3 border border-border">Buy It When</th>
+              <th className="p-3 border border-border">Weak It When</th>
+            </tr>
+          </thead>
+          <tbody>
+            {ociBranches.map((row) => (
+              <tr key={row.branch} className="hover:bg-surface">
+                <td className="p-3 border border-border font-semibold">{row.branch}</td>
+                <td className="p-3 border border-border text-text-muted text-sm">{row.strongestFor}</td>
+                <td className="p-3 border border-border text-accent text-sm">{row.buyWhen}</td>
+                <td className="p-3 border border-border text-text-muted text-sm">{row.weakWhen}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
 
-      <div className="space-y-6">
-        {ociUpgrades.map((cat, i) => (
-          <div key={i} className="p-6 rounded-xl border border-border bg-surface">
-            <div className="flex items-center justify-between mb-3">
-              <h2 className="text-xl font-bold font-heading">
-                <span className="text-accent">0{i + 1}</span> {cat.category}
-              </h2>
-              <span className="text-xs px-3 py-1 rounded bg-accent/10 text-accent font-mono">{cat.priority}</span>
-            </div>
-            <p className="text-sm text-text-muted leading-relaxed mb-4">{cat.description}</p>
-            <h3 className="text-xs font-semibold text-accent-secondary mb-2">Available Upgrades:</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-              {cat.upgrades.map((upg, j) => (
-                <div key={j} className="p-3 rounded-lg bg-surface-hover flex items-start gap-2">
-                  <span className="text-accent text-xs mt-0.5">&rarr;</span>
-                  <span className="text-xs text-text-muted">{upg}</span>
-                </div>
-              ))}
-            </div>
+      <div className="space-y-4 mb-8">
+        {upgradeRules.map((rule) => (
+          <div key={rule.title} className="p-5 rounded-xl border border-border bg-surface">
+            <h2 className="text-lg font-bold font-heading mb-2">{rule.title}</h2>
+            <p className="text-sm text-text-muted">{rule.body}</p>
           </div>
         ))}
       </div>
 
-      <div className="mt-10 p-6 rounded-xl border border-accent/20 bg-accent/5">
-        <h2 className="font-bold font-heading mb-2">
-          <span className="text-accent">&#9878;</span> Optimal Upgrade Path
-        </h2>
-        <div className="space-y-3 text-sm text-text-muted mt-3">
-          <div className="flex gap-3">
-            <span className="text-accent font-bold font-mono">1.</span>
-            <p>Electronics: Basic Scanner → Advanced Scanner. Mission intel is the most impactful upgrade in the game. Do this before any other O.C.I. investment.</p>
-          </div>
-          <div className="flex gap-3">
-            <span className="text-accent font-bold font-mono">2.</span>
-            <p>Hull: Medical Bay. Healing between missions in an operation keeps your best squads healthy across multiple fights.</p>
-          </div>
-          <div className="flex gap-3">
-            <span className="text-accent font-bold font-mono">3.</span>
-            <p>Weapons: Orbital Rocket. Your first orbital strike option. Use on priority targets or to clear clustered enemies.</p>
-          </div>
-          <div className="flex gap-3">
-            <span className="text-accent font-bold font-mono">4.</span>
-            <p>Electronics: Tactical Network. Full enemy deployment map with weak point analysis. Game-changing for hard missions.</p>
-          </div>
-          <div className="flex gap-3">
-            <span className="text-accent font-bold font-mono">5+</span>
-            <p>Branch out based on faction alignment. Faction-specific upgrades offer the best value for committed campaigns.</p>
-          </div>
-        </div>
+      <div className="overflow-x-auto mb-8">
+        <table className="w-full text-left border border-border text-sm">
+          <thead className="bg-surface">
+            <tr>
+              <th className="p-3 border border-border">Campaign State</th>
+              <th className="p-3 border border-border">Prioritize</th>
+              <th className="p-3 border border-border">Why</th>
+            </tr>
+          </thead>
+          <tbody>
+            {campaignStates.map((row) => (
+              <tr key={row.state} className="hover:bg-surface">
+                <td className="p-3 border border-border font-semibold">{row.state}</td>
+                <td className="p-3 border border-border text-accent text-sm">{row.prioritize}</td>
+                <td className="p-3 border border-border text-text-muted text-sm">{row.reason}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
+
+      <section className="space-y-4">
+        <h2 className="text-xl font-bold font-heading">
+          <span className="text-accent">#</span> FAQ
+        </h2>
+        {faqs.map((faq) => (
+          <details key={faq.question}>
+            <summary>{faq.question}</summary>
+            <p>{faq.answer}</p>
+          </details>
+        ))}
+      </section>
     </div>
   );
 }

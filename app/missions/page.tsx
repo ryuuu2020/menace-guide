@@ -1,79 +1,191 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Missions & Operations Guide",
-  description: "Complete MENACE missions guide: operation types, mission objectives, deployment strategies, and how to handle weather, time of day, terrain, and enemy composition for every mission type.",
+  title: "MENACE Missions Guide — Read Operations by Pressure and Cost",
+  description:
+    "A practical MENACE missions guide covering operation types, mission pressure, environmental taxes, and how to choose the right approach without fake universal mission formulas.",
 };
+
+const missionTypes = [
+  {
+    type: "Assault and elimination",
+    read:
+      "These missions are not easy just because they are common. They quietly tax roster health when approached casually.",
+    solve:
+      "Bring a squad that can read contact cleanly and finish without taking avoidable chip damage across several engagements.",
+    trap:
+      "Players often spend more campaign health here than on obvious boss missions because familiarity lowers discipline.",
+  },
+  {
+    type: "Defense and holdout",
+    read:
+      "The real question is whether you can rebuild shape after the first breach, not whether the squad looks strong on the opening line.",
+    solve:
+      "Favor suppression, reserve discipline, and one reliable recovery answer behind the first contact zone.",
+    trap:
+      "If the squad has no second line, the mission becomes much harder than the briefing looked.",
+  },
+  {
+    type: "Extraction, recon, or infiltration",
+    read:
+      "These missions punish the wrong kind of speed. Tempo and information matter more than blunt force.",
+    solve:
+      "Use mobility, vision, and low-cost contact management so the objective can stay central instead of turning into a random firefight.",
+    trap:
+      "Heavy or static squads often make these missions feel unfair simply because they answered the wrong problem.",
+  },
+  {
+    type: "Hive, boss, or anti-large pressure",
+    read:
+      "These missions are specialist checks. The rest of the campaign may have hidden that gap until now.",
+    solve:
+      "Bring the anti-large plan early and protect the squad long enough for that plan to matter.",
+    trap:
+      "Improvising a boss answer out of generic strength is how these missions become expensive panic fights.",
+  },
+];
+
+const environmentReads = [
+  {
+    factor: "Low visibility or weather pressure",
+    effect:
+      "The mission becomes more about information and spacing. Good weapons are less useful if the squad cannot see or position cleanly enough to use them.",
+  },
+  {
+    factor: "Urban or cover-dense maps",
+    effect:
+      "Angle control, breach timing, and local recovery matter more than generic long-range comfort.",
+  },
+  {
+    factor: "Open or exposed terrain",
+    effect:
+      "Crossing safely becomes a build tax. Smoke, lane denial, and disciplined movement matter more than one extra premium damage slot.",
+  },
+  {
+    factor: "Long operation chain pressure",
+    effect:
+      "Mission value must be judged together with what it costs the next deployments, not only with whether it is winnable in isolation.",
+  },
+];
+
+const briefingRules = [
+  {
+    title: "Read what the mission punishes first",
+    body:
+      "Objective text is less important than the failure condition hiding behind it. A mission that says elimination may really be testing contact discipline or terrain crossing.",
+  },
+  {
+    title: "Operations should be judged as sequences, not only as nodes",
+    body:
+      "The right mission is not always the one with the most obvious reward. It is often the one your current roster can clear without poisoning the next several choices.",
+  },
+  {
+    title: "This page is not a fake universal mission formula",
+    body:
+      "No single deployment script survives every environment, roster condition, and operation chain. The goal is to read mission pressure honestly enough to choose the right response.",
+  },
+];
+
+const faqs = [
+  {
+    question: "What is the most common mission mistake in MENACE?",
+    answer:
+      "Treating familiar missions as free wins. Routine operations are often where campaign damage quietly accumulates because players stop respecting what the map is taxing.",
+  },
+  {
+    question: "How should I compare mission choices inside an operation?",
+    answer:
+      "Compare them by pressure and cost together: what kind of squad they require, what attrition they risk, and what they leave the campaign able to do afterward.",
+  },
+  {
+    question: "Why do some missions feel harder than their briefing suggests?",
+    answer:
+      "Because the briefing often announces the objective while hiding the real tax. Visibility, terrain, weak recovery, or roster mismatch usually explain the gap.",
+  },
+];
 
 export default function MissionsPage() {
   return (
     <div className="mx-auto max-w-6xl px-4 py-12">
-      <h1 className="text-3xl sm:text-4xl font-extrabold font-heading mb-2">
-        Missions &amp; <span className="text-accent">Operations</span>
-      </h1>
-      <p className="text-text-muted mb-10 max-w-2xl">
-        Understand every mission type, objective, and deployment strategy in MENACE. From
-        reading mission briefings to countering environmental hazards.
-      </p>
-
-      <div className="faq-snippets mb-8">
-        <h2 className="text-xl font-bold mb-4 font-heading"><span className="text-accent">#</span> FAQ</h2>
-        <details>
-          <summary>How do operations work?</summary>
-          <p>An Operation is a set of linked missions on the Starmap. Each operation has branching paths with different objectives and rewards. You choose which missions to tackle within an operation, and completing the final objective concludes the operation and triggers Black Market refresh.</p>
-        </details>
-        <details>
-          <summary>What should I check before deploying?</summary>
-          <p>1) Time of day (night reduces visibility), 2) Weather (sandstorms/blizzards limit range), 3) Enemy composition (via Electronics O.C.I. intel), 4) Mission objectives and optional goals, 5) Supply limit for the mission. Tailor your squad composition accordingly.</p>
-        </details>
-        <details>
-          <summary>Can I abort a mission?</summary>
-          <p>Yes, but there are consequences. Aborting damages faction reputation and you lose any progress on objectives. However, it preserves your squads. If a mission is going badly, retreating is often better than losing squad leaders permanently.</p>
-        </details>
+      <div className="max-w-3xl mb-10">
+        <p className="text-xs uppercase tracking-[0.2em] text-text-muted mb-3">Operation Reading</p>
+        <h1 className="text-3xl sm:text-4xl font-extrabold font-heading mb-3">
+          Missions &amp; <span className="text-accent">Operations</span>
+        </h1>
+        <p className="text-text-muted leading-relaxed">
+          The useful MENACE mission page is not a catalog of fake universal answers. It should help
+          you read what each operation is really taxing: contact discipline, recovery structure,
+          movement, information, or specialist pressure.
+        </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-        {[
-          { title: "Assault", desc: "Eliminate all enemy forces in the sector. The most common mission type. Bring balanced squads with anti-infantry and anti-vehicle capability.", tips: "Clear methodically — don&apos;t trigger multiple enemy groups at once. Use scouts to reveal enemy positions before committing." },
-          { title: "Defense", desc: "Hold a position against waves of enemies. Enemies attack from multiple directions. Prioritize squad positioning and overlapping fields of fire.", tips: "Deploy LMG squads at choke points. Keep a mobile reserve to respond to breakthroughs. Orbital strikes excel at breaking wave rushes." },
-          { title: "Extraction", desc: "Reach an extraction point with a VIP or captured asset. Speed is critical — bring mobile squads. Enemies will try to intercept.", tips: "Use vehicles to transport squads quickly. Smoke grenades cover movement. Keep one squad as rear guard to delay pursuers." },
-          { title: "Hive Destruction", desc: "Destroy Alien Wildlife hives. Boss creatures guard the objective. Bring anti-large weapons (Crocodile, AT weapons, flamethrowers).", tips: "Clear surrounding wildlife before engaging the boss. J.G. Wetteroth and Jane Darby excel here. Save orbital strikes for the boss." },
-          { title: "Infiltration", desc: "Stealth-focused missions often from DICE. Minimize detection. Concealment gear and suppressed weapons are essential.", tips: "Motion Scanners reveal hidden enemies. Night Vision Goggles for night missions. Spread squads to avoid multi-squad ambushes." },
-          { title: "Convoy Raid", desc: "Intercept and destroy an enemy supply convoy. Vehicles are the primary targets. Bring heavy anti-tank weapons.", tips: "Set up ambush positions along the convoy route. ATGM Launchers and RPGs for vehicles. Focus fire on escort vehicles first." },
-        ].map((m, i) => (
-          <div key={i} className="p-5 rounded-xl border border-border bg-surface">
-            <h2 className="font-bold font-heading text-sm text-accent mb-2">{m.title}</h2>
-            <p className="text-xs text-text-muted leading-relaxed mb-3">{m.desc}</p>
-            <div className="p-3 rounded-lg bg-accent/5 border border-accent/10">
-              <p className="text-xs text-text-muted"><span className="text-accent font-semibold">Tip:</span> {m.tips}</p>
-            </div>
+      <section className="mb-12 space-y-4">
+        {missionTypes.map((item) => (
+          <div key={item.type} className="p-5 rounded-xl border border-border bg-surface">
+            <h2 className="font-bold font-heading text-white mb-2">{item.type}</h2>
+            <p className="text-sm text-text-muted leading-relaxed mb-2">
+              <span className="text-white font-medium">How to read it:</span> {item.read}
+            </p>
+            <p className="text-sm text-text-muted leading-relaxed mb-2">
+              <span className="text-white font-medium">What solves it:</span> {item.solve}
+            </p>
+            <p className="text-sm text-text-muted leading-relaxed">
+              <span className="text-white font-medium">Common trap:</span> {item.trap}
+            </p>
           </div>
         ))}
-      </div>
+      </section>
 
-      <div className="mt-10 p-6 rounded-xl border border-accent/20 bg-accent/5">
-        <h2 className="font-bold font-heading mb-2">
-          <span className="text-accent">&#9878;</span> Environmental Factors
+      <section className="mb-12">
+        <h2 className="text-xl font-bold font-heading mb-4">
+          <span className="text-accent">#</span> Environmental Factors That Actually Change the Mission
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-text-muted mt-3">
-          <div>
-            <h3 className="font-semibold text-accent-secondary mb-1">Night Operations</h3>
-            <p>Visibility is severely reduced. Night Vision Goggles are essential. Enemy detection range is shorter — use this for stealth approaches. Long-range weapons lose effectiveness.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-accent-secondary mb-1">Sandstorms / Blizzards</h3>
-            <p>Maximum range of all weapons is reduced. Detection and vision are impaired. Thermal Imaging Devices partially negate weather penalties. Close-range weapons (SMGs, Shotguns) gain relative value.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-accent-secondary mb-1">Urban Terrain</h3>
-            <p>Dense cover everywhere. Shotguns and SMGs dominate. Vehicle maneuverability is limited. Clear buildings methodically — enemies can hide in any structure.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-accent-secondary mb-1">Open Terrain</h3>
-            <p>Minimal cover, long sight lines. Snipers and Battle Rifles dominate. Vehicles are most effective here. Smoke grenades are essential for crossing open ground safely.</p>
-          </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {environmentReads.map((row) => (
+            <div key={row.factor} className="p-5 rounded-xl border border-border bg-surface">
+              <h3 className="font-semibold text-accent mb-2">{row.factor}</h3>
+              <p className="text-sm text-text-muted leading-relaxed">{row.effect}</p>
+            </div>
+          ))}
         </div>
+      </section>
+
+      <section className="mb-12 space-y-4">
+        {briefingRules.map((rule) => (
+          <div key={rule.title} className="p-5 rounded-xl border border-border bg-surface">
+            <h2 className="text-lg font-bold font-heading mb-2">{rule.title}</h2>
+            <p className="text-sm text-text-muted leading-relaxed">{rule.body}</p>
+          </div>
+        ))}
+      </section>
+
+      <section className="mb-12">
+        <h2 className="text-xl font-bold font-heading mb-4">
+          <span className="text-accent">#</span> FAQ
+        </h2>
+        <div className="space-y-4">
+          {faqs.map((faq) => (
+            <div key={faq.question} className="p-5 rounded-xl border border-border bg-surface">
+              <h3 className="font-semibold text-white mb-2">{faq.question}</h3>
+              <p className="text-sm text-text-muted leading-relaxed">{faq.answer}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <div className="mt-8 flex flex-wrap gap-4 text-sm">
+        <Link href="/mission-difficulty-guide" className="text-accent hover:underline">
+          Mission Difficulty →
+        </Link>
+        <Link href="/campaign-guide" className="text-accent hover:underline">
+          Campaign Guide →
+        </Link>
+        <Link href="/builds" className="text-accent hover:underline">
+          Builds →
+        </Link>
       </div>
+      <p className="text-xs text-text-muted mt-8">Last updated: July 11, 2026</p>
     </div>
   );
 }

@@ -7,8 +7,8 @@ export default function NotFound() {
           Coming <span className="text-gold">Soon</span>
         </h1>
         <p className="text-text-secondary text-sm mb-6">
-          This guide page is being crafted by our Nusantara scholars.
-          We are researching, verifying, and writing in-depth content.
+          This guide page is not published yet. We only ship pages after the route,
+          data, and recommendations are useful enough to stand on their own.
         </p>
         <div className="flex items-center justify-center gap-4 text-sm">
           <a href="/" className="px-4 py-2 border border-border-subtle rounded bg-abyss-light text-text-secondary hover:text-text-primary hover:border-gold/30 transition-colors">

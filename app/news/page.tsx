@@ -1,91 +1,183 @@
-import Link from 'next/link';
+import type { Metadata } from "next";
+import Link from "next/link";
 
-const FACTS = [
-      {
-    date: '2026-06-27',
-    title: 'MENACE Patch v0.7.6+19301 Live — Latest Stability and Balance Pass',
-    content:
-      'Overhype Studios shipped MENACE patch v0.7.6+19301 on June 25, continuing their aggressive post-launch update cadence — this is the 19th patch since the September 2025 demo and the 8th since Early Access launched in February 2026. Key improvements in this build include additional stability fixes for late-game saves with large unit counts, balance adjustments to several overperforming unit types, and AI behavior improvements for flanking maneuvers. The v0.7.x series has been focused on polishing the experience after the major v0.7.0 content drop in April, which added new missions, units, and systems. For new players considering picking up MENACE during the Steam Summer Sale, the current build is the most stable version yet — the team has been shipping weekly patches addressing community-reported issues with impressive consistency. The official wiki now has detailed patch breakdowns for every version, making it easy to track what has changed since you last played.',
-  },
-  {
-    date: '2026-06-26',
-    title: 'SL Update 1 Now Live — First Major MENACE Content Drop',
-    content:
-      'Overhype Studios and Hooded Horse released SL Update 1, the first major content expansion since MENACE entered Early Access in February 2026. Dev Diary #48 previewed the highlights: new squad leader abilities, expanded faction diplomacy trees, and rebalanced armored vehicle combat. SL Update 1 introduces Convoy Interception — a new mission type where players ambush MENACE supply lines in real-time before transitioning to turn-based tactical combat. The update also adds 3 new weapon variants (including a heavy flamethrower), 2 new mech chassis options for the O.C.I. ship upgrade tree, and a reworked Black Market economy offering rare faction-exclusive equipment at premium prices. Balance changes: light vehicles receive a 15% HP buff while heavy mechs get a slight movement range nerf. A fresh campaign start is required to access all new content — existing saves will not trigger the new mission types.',
-  },
-  {
-    date: '2026-06-25',
-    title: 'MENACE Continues to Grow in Early Access',
-    content:
-      'Developed by Overhype Studios (creators of Battle Brothers) and published by Hooded Horse, MENACE has been in Early Access since February 2026. The game features 14 squad leaders, 7 factions, an extensive weapon catalog with real military designations, armored vehicles including tanks and mechs, and turn-based tactical combat against the MENACE alien threat in the Wayback System.',
-  },
-  {
-    date: '2026-02',
-    title: 'Early Access Launch',
-    content:
-      'MENACE launched on Steam Early Access in February 2026. Available on PC via Steam, GOG, Epic Games Store, and Microsoft Store. The game features squad-based tactical combat, faction relationships, O.C.I. ship upgrades, Black Market trading, and the ongoing campaign against the MENACE threat.',
-  },
-];
-export const metadata = {
-  title: "MENACE NEWS & UPDATES — Complete Guide (2026)",
+export const metadata: Metadata = {
+  title: "MENACE News Tracker — Follow Updates by What Changes Your Campaign",
   description:
-    "About MENACE — Early Access tactical RPG from Overhype Studios",
+    "A practical MENACE news tracker focused on what kinds of updates matter, how to read patch impact, and where to verify official announcements.",
+  robots: {
+    index: false,
+    follow: true,
+  },
 };
 
+const updateBuckets = [
+  {
+    bucket: "Campaign-structure updates",
+    matters:
+      "These are the notes that change route logic, roster planning, mission flow, or long-run pacing. They deserve the most attention because they can invalidate old habits.",
+    check:
+      "Read these first when a save suddenly feels worse or better even before combat details are visible.",
+  },
+  {
+    bucket: "Combat and role-balance updates",
+    matters:
+      "These change how certain units, weapons, or support packages trade value once the fight starts.",
+    check:
+      "Useful when a once-stable squad now struggles to convert pressure or when a specialist pick feels much weaker than before.",
+  },
+  {
+    bucket: "Economy and support-system updates",
+    matters:
+      "Changes to black market value, research, OCI support, or resource flow can shift what counts as a safe long-run plan.",
+    check:
+      "Review these before assuming your old spending priorities are still correct.",
+  },
+  {
+    bucket: "Bugfix and stability updates",
+    matters:
+      "Not every patch changes strategy, but stability fixes can still matter if they affect campaign saves, deployment behavior, or late-run reliability.",
+    check:
+      "Prioritize them when deciding whether it is safe to continue a long save or restart after a rough patch.",
+  },
+];
+
+const trackerRules = [
+  {
+    title: "Do not treat every patch note as equally strategic",
+    body:
+      "This page is intentionally not a fake patch archive. Cosmetic changes, hotkeys, and minor UI notes rarely deserve the same reading time as economy, mission, or roster-logic changes.",
+  },
+  {
+    title: "Re-test the habit, not just the number",
+    body:
+      "If an update touches balance, the real question is which old decision rule just got weaker or stronger. Strategy shifts happen through habits, not through isolated stat lines.",
+  },
+  {
+    title: "Use official sources for exact details",
+    body:
+      "A tracker page should help you decide what to verify, not pretend to replace the official patch note. For exact numbers or dates, always check the developer source directly.",
+  },
+];
+
+const sourceTable = [
+  {
+    source: "Steam news posts",
+    bestFor: "Official announcements, patch note text, event timing",
+    useItWhen: "You need the primary source before updating a route, guide, or save assumption",
+  },
+  {
+    source: "Developer diaries or wiki posts",
+    bestFor: "Design intent, upcoming direction, larger system context",
+    useItWhen: "A patch changed behavior and you want to know whether that shift is temporary or part of a broader direction",
+  },
+  {
+    source: "Your own live save checks",
+    bestFor: "Confirming how the change feels in a real campaign",
+    useItWhen: "The note sounds small but your run plays materially differently afterward",
+  },
+];
+
+const faqs = [
+  {
+    question: "What MENACE updates should I read first?",
+    answer:
+      "Start with anything that changes campaign flow, mission logic, research value, resource pacing, or the jobs your core squad package is supposed to do. Those updates usually have the biggest downstream impact.",
+  },
+  {
+    question: "Should I rebuild guides after every patch?",
+    answer:
+      "No. Rebuild only when the patch changes the decision rule behind the guide. A guide should survive small number movement if its diagnosis logic is sound.",
+  },
+  {
+    question: "How should I use this page?",
+    answer:
+      "Use it as a filter. It tells you what kind of update matters and where to verify it, so you spend time reading the notes that can actually change how a campaign should be played.",
+  },
+];
 
 export default function NewsPage() {
   return (
     <div className="min-h-screen bg-[#060b10]">
-      <div className="max-w-4xl mx-auto px-4 py-12">
-        <div className="mb-10">
+      <div className="mx-auto max-w-5xl px-4 py-12">
+        <div className="max-w-3xl mb-10">
           <Link
             href="/"
             className="text-xs font-mono text-text-muted hover:text-tactical-blue transition-colors"
           >
             &larr; Back to Command Center
           </Link>
-          <h1 className="font-display text-3xl font-semibold tracking-tight text-text-primary mt-4">
-            NEWS &amp; <span className="text-tactical-blue">UPDATES</span>
+          <p className="text-xs font-mono uppercase tracking-[0.2em] text-text-muted mt-6 mb-3">Update Filter</p>
+          <h1 className="font-display text-3xl font-semibold tracking-tight text-text-primary">
+            MENACE News Tracker
           </h1>
-          <p className="text-xs font-mono text-text-muted mt-2">
-            About MENACE — Early Access tactical RPG from Overhype Studios
+          <p className="text-sm text-text-secondary leading-relaxed mt-3">
+            A useful news page is not a dump of half-verified patch claims. It should help you spot
+            which updates can change your campaign habits, which ones only matter for stability, and
+            where to verify the exact official wording before you act on it.
           </p>
         </div>
 
-        <div className="space-y-6">
-          {FACTS.map((item, i) => (
-            <article
-              key={i}
-              className="border border-border-subtle bg-[#0a0e13] hover:border-tactical-blue/20 transition-colors"
-            >
-              <div className="flex items-center justify-between px-4 py-3 border-b border-border-subtle">
-                <span className={`text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 ${
-                  i === 0 ? 'bg-tactical-blue/10 text-tactical-blue' : 'bg-terminal-green/10 text-terminal-green'
-                }`}>
-                  {i === 0 ? 'RELEASE' : 'LAUNCH'}
-                </span>
-                <span className="text-[11px] font-mono text-text-muted">{item.date}</span>
-              </div>
-              <div className="p-4">
-                <h2 className="font-display text-lg font-semibold text-text-primary mb-3">
-                  {item.title}
-                </h2>
-                <p className="text-sm text-text-secondary leading-relaxed">
-                  {item.content}
-                </p>
-              </div>
-            </article>
+        <section className="grid gap-4 md:grid-cols-2 mb-12">
+          {updateBuckets.map((item) => (
+            <div key={item.bucket} className="border border-border-subtle bg-[#0a0e13] p-5">
+              <h2 className="font-display text-lg font-semibold text-text-primary mb-3">{item.bucket}</h2>
+              <p className="text-sm text-text-secondary leading-relaxed mb-3">{item.matters}</p>
+              <p className="text-sm text-text-muted leading-relaxed">
+                <span className="text-text-primary font-medium">Check first:</span> {item.check}
+              </p>
+            </div>
           ))}
-        </div>
+        </section>
 
-        <div className="mt-10 pt-6 border-t border-border-subtle">
-          <p className="text-[11px] font-mono text-text-muted">
-            For official announcements and patch notes, visit the MENACE Steam page or check the{' '}
-            <a href="https://wiki.hoodedhorse.com/MENACE" target="_blank" rel="noopener noreferrer" className="text-tactical-blue hover:underline">
-              Official Wiki
-            </a>.
-          </p>
-        </div>
+        <section className="space-y-4 mb-12">
+          <h2 className="font-display text-xl font-semibold text-text-primary mb-4">Rules for Reading Updates</h2>
+          {trackerRules.map((rule) => (
+            <div key={rule.title} className="border border-border-subtle bg-[#0a0e13] p-5">
+              <h3 className="font-semibold text-text-primary mb-2">{rule.title}</h3>
+              <p className="text-sm text-text-secondary leading-relaxed">{rule.body}</p>
+            </div>
+          ))}
+        </section>
+
+        <section className="mb-12">
+          <h2 className="font-display text-xl font-semibold text-text-primary mb-4">Where to Verify Exact Details</h2>
+          <div className="overflow-x-auto border border-border-subtle bg-[#0a0e13]">
+            <table className="w-full text-left text-sm">
+              <thead>
+                <tr className="border-b border-border-subtle">
+                  <th className="p-3 text-text-primary">Source</th>
+                  <th className="p-3 text-text-primary">Best For</th>
+                  <th className="p-3 text-text-primary">Use It When</th>
+                </tr>
+              </thead>
+              <tbody>
+                {sourceTable.map((row) => (
+                  <tr key={row.source} className="align-top border-b border-border-subtle last:border-b-0">
+                    <td className="p-3 font-semibold text-text-primary">{row.source}</td>
+                    <td className="p-3 text-text-secondary">{row.bestFor}</td>
+                    <td className="p-3 text-text-secondary">{row.useItWhen}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section className="space-y-4">
+          <h2 className="font-display text-xl font-semibold text-text-primary">FAQ</h2>
+          {faqs.map((faq) => (
+            <div key={faq.question} className="border border-border-subtle bg-[#0a0e13] p-5">
+              <h3 className="font-semibold text-text-primary mb-2">{faq.question}</h3>
+              <p className="text-sm text-text-secondary leading-relaxed">{faq.answer}</p>
+            </div>
+          ))}
+        </section>
+
+        <p className="text-[11px] font-mono text-text-muted mt-10">
+          Last updated: July 11, 2026. Verify current announcements on the official MENACE channels
+          before treating a patch note as confirmed strategy guidance.
+        </p>
       </div>
     </div>
   );

@@ -1,148 +1,194 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { beginnerTips, combatMechanics, ociUpgrades } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "Beginner's Guide — How to Play MENACE",
-  description: "Complete MENACE beginner guide: essential tips, combat basics, squad management, Black Market, O.C.I. upgrades, and faction strategy for new commanders.",
+  title: "MENACE Beginner's Guide — Solve the First Real Failure, Not Fake Checklists",
+  description:
+    "A practical MENACE beginner's guide focused on the first repeated campaign failures, early reading habits, and which pages new players should actually open next.",
 };
+
+const earlyProblems = [
+  {
+    problem: "I start fights without understanding what will break first",
+    read:
+      "New players often lose because they treat every mission like a damage problem. It is usually a contact, position, or sequencing problem first.",
+    next:
+      "Read Combat and Missions before chasing stronger-looking equipment.",
+  },
+  {
+    problem: "My roster seems fine until fatigue or follow-up missions expose it",
+    read:
+      "One good squad is not the same thing as a healthy campaign. The beginner trap is overinvesting in one package and leaving the rest too shallow.",
+    next:
+      "Read Squad Leaders and Resources if the campaign feels thinner after every win.",
+  },
+  {
+    problem: "I keep buying upgrades, but the run does not feel safer",
+    read:
+      "That usually means the wrong burden is being upgraded. More power is not the same as more stability.",
+    next:
+      "Read Research Priority, Resources, and Black Market when upgrades look good but the campaign still plays badly.",
+  },
+  {
+    problem: "I am not sure what page to read after the basics",
+    read:
+      "The right next page depends on the first symptom that repeats: bad contact, weak squad jobs, expensive wins, or wrong mission selection.",
+    next:
+      "Use this guide as a router, not as a fake all-in-one answer page.",
+  },
+];
+
+const starterHabits = [
+  {
+    title: "Name the burden before the mission starts",
+    body:
+      "Ask what this operation is really taxing: safe contact, anti-armor conversion, recovery margin, or rotation depth. Good openings come from reading the problem before deployment.",
+  },
+  {
+    title: "Protect the next mission, not just this one",
+    body:
+      "Beginner campaigns often die from expensive wins. Every clean choice that keeps the next deployment stronger matters more than one dramatic overextension.",
+  },
+  {
+    title: "Treat upgrades as burden removal",
+    body:
+      "Do not upgrade just because the menu offers something powerful-looking. Upgrade when the new tool removes a repeated failure that the roster cannot currently solve.",
+  },
+];
+
+const routingTable = [
+  {
+    symptom: "Battles get chaotic immediately",
+    page: "Combat or Missions",
+    why: "The first mistake is probably contact reading or fight shape, not roster ceiling.",
+  },
+  {
+    symptom: "You win, but the campaign feels worse after each win",
+    page: "Resources or Squad Leaders",
+    why: "The issue is attrition, fatigue, or shallow rotation.",
+  },
+  {
+    symptom: "A mission feels impossible even though the squad looks upgraded",
+    page: "Mission Difficulty Guide or Research Priority",
+    why: "The campaign may be solving the wrong problem with the wrong tools.",
+  },
+  {
+    symptom: "You do not know how to structure the squad at all",
+    page: "Unit Guide or Squad Composition Guide",
+    why: "The roster likely lacks honest job coverage rather than raw quality.",
+  },
+];
+
+const faqs = [
+  {
+    question: "What should a new MENACE player focus on first?",
+    answer:
+      "Focus on reading the first repeated failure correctly. Usually that is contact quality, mission fit, or campaign cost, not perfect builds or perfect upgrades.",
+  },
+  {
+    question: "Is there a fixed first-five-hours checklist?",
+    answer:
+      "No. This page is not a fake first-five-hours checklist. Use it to identify what kind of failure is already repeating, then move to the page that addresses that failure directly.",
+  },
+  {
+    question: "What is the most common beginner mistake?",
+    answer:
+      "Trying to solve every early problem with stronger-looking units or gear instead of fixing the burden that is actually making the campaign unstable.",
+  },
+];
 
 export default function BeginnersGuidePage() {
   return (
     <div className="mx-auto max-w-6xl px-4 py-12">
-      <h1 className="text-3xl sm:text-4xl font-extrabold font-heading mb-2">
-        Beginner&apos;s Guide to <span className="text-accent">MENACE</span>
-      </h1>
-      <p className="text-text-muted mb-10 max-w-2xl">
-        New to MENACE? This guide covers everything you need to survive the Wayback System — from
-        your first mission to commanding a full strike force. Written for players who want to
-        understand the game, not just copy builds.
-      </p>
-
-      {/* FAQ Snippets */}
-      <div className="faq-snippets mb-8">
-        <h2 className="text-xl font-bold mb-4 font-heading">
-          <span className="text-accent">#</span> Quick FAQ
-        </h2>
-        <details>
-          <summary>Is MENACE hard to learn?</summary>
-          <p>MENACE has depth but is not overwhelming. If you&apos;ve played Battle Brothers or XCOM, you&apos;ll feel at home. New players should start on lower difficulty, focus on the basics (cover, suppression, rotation), and gradually increase complexity. The game rewards methodical play over reckless aggression.</p>
-        </details>
-        <details>
-          <summary>What should I do in my first 5 hours?</summary>
-          <p>1) Complete the tutorial operations. 2) Unlock 3-4 squad leaders and rotate them. 3) Prioritize Alien Wildlife missions for easy XP. 4) Invest first O.C.I. points in Electronics for mission intel. 5) Check the Black Market after every operation for gear upgrades.</p>
-        </details>
-        <details>
-          <summary>Which squad leaders are best for beginners?</summary>
-          <p>Jane Darby (S-Tier sniper), Edwin Pike (suppression immunity), and Kody Greifinger (versatile all-rounder) are the most forgiving choices. Avoid Marta Carda (extreme risk) and J.G. Wetteroth (situational) until you understand the combat system.</p>
-        </details>
+      <div className="max-w-3xl mb-10">
+        <p className="text-xs uppercase tracking-[0.2em] text-text-muted mb-3">New Commander Routing</p>
+        <h1 className="text-3xl sm:text-4xl font-extrabold font-heading mb-3">
+          Beginner&apos;s Guide to <span className="text-accent">MENACE</span>
+        </h1>
+        <p className="text-text-muted leading-relaxed">
+          New players improve fastest when they stop looking for a giant universal checklist and
+          start reading the first thing that keeps going wrong. In MENACE, the real beginner lesson
+          is usually campaign reading, not memorizing more menu details.
+        </p>
       </div>
 
-      {/* Getting Started */}
-      <section className="mb-12">
-        <h2 className="text-2xl font-bold font-heading mb-4">
-          <span className="text-accent">01</span> Getting Started
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
+        {earlyProblems.map((item) => (
+          <div key={item.problem} className="p-5 rounded-xl border border-border bg-surface">
+            <h2 className="text-lg font-bold font-heading mb-2">{item.problem}</h2>
+            <p className="text-sm text-text-muted leading-relaxed mb-2">{item.read}</p>
+            <p className="text-sm text-text-muted leading-relaxed">
+              <span className="text-text-primary font-medium">Go next:</span> {item.next}
+            </p>
+          </div>
+        ))}
+      </section>
+
+      <section className="space-y-4 mb-12">
+        <h2 className="text-xl font-bold font-heading">
+          <span className="text-accent">#</span> Early Habits That Actually Transfer
         </h2>
-        <p className="text-text-muted mb-4 leading-relaxed">
-          You are the commander of the TCRN Impetus, a strike cruiser stranded in the Wayback System
-          after the Warp Gate was damaged. Your mission: lead a mixed force of marines, mercenaries,
-          and even criminals against pirates, rogue armies, corporate forces, and an emerging alien
-          threat known as the MENACE.
-        </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
-          <div className="p-4 rounded-xl border border-border bg-surface">
-            <h3 className="font-semibold text-sm text-accent mb-2">Your Ship (TCRN Impetus)</h3>
-            <p className="text-xs text-text-muted">Your mobile base. Upgradable via O.C.I. components across Electronics, Weapons, and Hull systems. Upgrades persist across the entire campaign.</p>
+        {starterHabits.map((habit) => (
+          <div key={habit.title} className="p-5 rounded-xl border border-border bg-surface">
+            <h3 className="font-semibold mb-2">{habit.title}</h3>
+            <p className="text-sm text-text-muted leading-relaxed">{habit.body}</p>
           </div>
-          <div className="p-4 rounded-xl border border-border bg-surface">
-            <h3 className="font-semibold text-sm text-accent mb-2">The Starmap</h3>
-            <p className="text-xs text-text-muted">Strategic map showing available operations. Each operation contains multiple missions. Choose operations based on faction relationships and rewards.</p>
-          </div>
-          <div className="p-4 rounded-xl border border-border bg-surface">
-            <h3 className="font-semibold text-sm text-accent mb-2">Squad Leaders</h3>
-            <p className="text-xs text-text-muted">You command squads through Squad Leaders — unique characters with stats, perks, and growth potential. Rotate leaders to avoid Fatigue penalties.</p>
-          </div>
-          <div className="p-4 rounded-xl border border-border bg-surface">
-            <h3 className="font-semibold text-sm text-accent mb-2">The Black Market</h3>
-            <p className="text-xs text-text-muted">Your primary source of weapons, armor, vehicles, and recruits. Inventory refreshes after each operation. Barter system — match value, no currency.</p>
-          </div>
+        ))}
+      </section>
+
+      <section className="mb-12">
+        <h2 className="text-xl font-bold font-heading mb-4">
+          <span className="text-accent">#</span> Which Page Should You Open Next?
+        </h2>
+        <div className="overflow-x-auto rounded-xl border border-border bg-surface">
+          <table className="w-full text-left text-sm">
+            <thead className="bg-surface-hover">
+              <tr>
+                <th className="p-3 border border-border">Symptom</th>
+                <th className="p-3 border border-border">Best Next Page</th>
+                <th className="p-3 border border-border">Why</th>
+              </tr>
+            </thead>
+            <tbody>
+              {routingTable.map((row) => (
+                <tr key={row.symptom} className="align-top">
+                  <td className="p-3 border border-border font-semibold">{row.symptom}</td>
+                  <td className="p-3 border border-border text-accent">{row.page}</td>
+                  <td className="p-3 border border-border text-text-muted">{row.why}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </section>
 
-      {/* Essential Tips */}
-      <section className="mb-12">
-        <h2 className="text-2xl font-bold font-heading mb-4">
-          <span className="text-accent">02</span> Essential Tips for Survival
+      <section className="space-y-4 mb-12">
+        <h2 className="text-xl font-bold font-heading">
+          <span className="text-accent">#</span> FAQ
         </h2>
-        <div className="space-y-3">
-          {beginnerTips.map((tip, i) => (
-            <div key={i} className="p-4 rounded-xl border border-border bg-surface">
-              <h3 className="font-semibold text-sm text-accent mb-1">{i + 1}. {tip.title}</h3>
-              <p className="text-xs text-text-muted leading-relaxed">{tip.detail}</p>
-            </div>
-          ))}
-        </div>
+        {faqs.map((faq) => (
+          <div key={faq.question} className="p-5 rounded-xl border border-border bg-surface">
+            <h3 className="font-semibold mb-2">{faq.question}</h3>
+            <p className="text-sm text-text-muted leading-relaxed">{faq.answer}</p>
+          </div>
+        ))}
       </section>
 
-      {/* Combat Basics */}
-      <section className="mb-12">
-        <h2 className="text-2xl font-bold font-heading mb-4">
-          <span className="text-accent">03</span> Combat Basics
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {combatMechanics.map((mech, i) => (
-            <div key={i} className="p-4 rounded-xl border border-border bg-surface">
-              <h3 className="font-semibold text-sm text-accent-secondary mb-2">{mech.title}</h3>
-              <p className="text-xs text-text-muted leading-relaxed">{mech.detail}</p>
-            </div>
-          ))}
-        </div>
-        <div className="mt-4">
-          <Link href="/combat" className="text-sm text-accent hover:underline">Read the full Combat System Guide →</Link>
-        </div>
-      </section>
-
-      {/* O.C.I. Upgrade Priority */}
-      <section className="mb-12">
-        <h2 className="text-2xl font-bold font-heading mb-4">
-          <span className="text-accent">04</span> Ship O.C.I. Upgrade Priority
-        </h2>
-        <div className="space-y-4">
-          {ociUpgrades.map((cat, i) => (
-            <div key={i} className="p-5 rounded-xl border border-border bg-surface">
-              <div className="flex items-center justify-between mb-2">
-                <h3 className="font-semibold text-sm">{cat.category}</h3>
-                <span className="text-xs text-accent font-mono">{cat.priority}</span>
-              </div>
-              <p className="text-xs text-text-muted mb-3">{cat.description}</p>
-              <div className="flex flex-wrap gap-2">
-                {cat.upgrades.map((upg, j) => (
-                  <span key={j} className="text-xs px-2 py-1 rounded bg-surface-hover border border-border">{upg}</span>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Next Steps */}
-      <section className="p-6 rounded-xl border border-accent/20 bg-accent/5">
-        <h2 className="font-bold font-heading mb-2">
-          <span className="text-accent">&#9878;</span> Next Steps
-        </h2>
-        <p className="text-sm text-text-muted leading-relaxed mb-3">
-          Now that you understand the basics, dive deeper into specific guides:
-        </p>
-        <div className="flex flex-wrap gap-2 text-sm">
-          <Link href="/squad-leaders" className="text-accent hover:underline">Squad Leaders Tier List →</Link>
-          <span className="text-text-muted">|</span>
-          <Link href="/weapons" className="text-accent hover:underline">Weapons Guide →</Link>
-          <span className="text-text-muted">|</span>
-          <Link href="/factions" className="text-accent hover:underline">Factions Strategy →</Link>
-          <span className="text-text-muted">|</span>
-          <Link href="/tactics" className="text-accent hover:underline">Advanced Tactics →</Link>
-        </div>
-      </section>
+      <div className="flex flex-wrap gap-4 text-sm">
+        <Link href="/combat" className="text-accent hover:underline">
+          Combat →
+        </Link>
+        <Link href="/unit-guide" className="text-accent hover:underline">
+          Unit Guide →
+        </Link>
+        <Link href="/squad-leaders" className="text-accent hover:underline">
+          Squad Leaders →
+        </Link>
+        <Link href="/resources" className="text-accent hover:underline">
+          Resources →
+        </Link>
+      </div>
+      <p className="text-xs text-text-muted mt-8">Last updated: July 12, 2026</p>
     </div>
   );
 }

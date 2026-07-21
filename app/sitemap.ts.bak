@@ -1,7 +1,5 @@
 import type { MetadataRoute } from 'next';
 
-export const dynamic = "force-static";
-
 const BASE = 'https://menace.gguidehub.com';
 
 // 该文件由 scripts/sync-sitemaps.py 自动生成，新增页面后重新运行脚本即可
@@ -22,7 +20,6 @@ const ROUTES = [
     '/missions',
     '/morale-discipline-guide',
     '/news',
-    '/oci-rework-guide',
     '/oci-upgrades',
     '/privacy',
     '/research-priority',

@@ -1,9 +1,101 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Black Market Guide — Trading & Economy",
-  description: "Complete MENACE Black Market guide: how bartering works, best items to buy, inventory refresh mechanics, squad leader recruitment, and economic strategy.",
+  title: "MENACE Black Market Guide — Buy by Bottleneck, Not by Catalog Hype",
+  description:
+    "A practical MENACE black market guide covering when to buy leaders, manpower, weapons, vehicles, and support items based on the campaign bottleneck you need to solve next.",
 };
+
+const marketPriorities = [
+  {
+    priority: "Roster expansion",
+    buyFor:
+      "When the campaign is losing because the bench is too shallow or too faction-locked to absorb future pressure.",
+    badVersion:
+      "Recruiting just because a file looks exciting when the roster still cannot support another mouth to feed.",
+  },
+  {
+    priority: "Manpower and sustain",
+    buyFor:
+      "When victories are becoming expensive and the next few operations look less safe because of attrition.",
+    badVersion:
+      "Ignoring sustain until the pool is already visibly collapsing.",
+  },
+  {
+    priority: "Weapon upgrades",
+    buyFor:
+      "When the squad already has structure and now needs a cleaner answer to suppression, armor, or finishing pressure.",
+    badVersion:
+      "Buying premium weapons into a roster that still lacks role clarity.",
+  },
+  {
+    priority: "Vehicles and large support pieces",
+    buyFor:
+      "When the campaign truly benefits from a new role, not just from another expensive toy.",
+    badVersion:
+      "Using the market to compensate for unresolved infantry or line-discipline problems.",
+  },
+];
+
+const marketRules = [
+  {
+    title: "The market should remove a bottleneck, not satisfy curiosity",
+    body:
+      "Every purchase should answer a question the campaign currently cannot solve: weak bench depth, fragile sustain, no armor answer, or no safe way to hold ground.",
+  },
+  {
+    title: "Overpaying in structure is worse than overpaying in goods",
+    body:
+      "The real cost of a bad purchase is not only what you traded away. It is what the campaign still cannot do afterward.",
+  },
+  {
+    title: "Permanent capacity usually beats flashy short-term power",
+    body:
+      "A better bench, safer sustain, or more coherent squad capability often outperforms one dramatic premium purchase.",
+  },
+  {
+    title: "The market is a campaign tool, not a loot wishlist",
+    body:
+      "Think in terms of future operations, not just the excitement of the current stock page.",
+  },
+];
+
+const marketChecks = [
+  {
+    check: "The campaign keeps failing after technically successful missions",
+    fix: "You likely need sustain or manpower support more than another shiny weapon.",
+  },
+  {
+    check: "The roster has strong items but weak coverage",
+    fix: "Prioritize leaders, bench depth, or missing job coverage before chasing upgrades.",
+  },
+  {
+    check: "Every premium listing looks tempting",
+    fix: "Step back and ask which current bottleneck is actually ending runs.",
+  },
+  {
+    check: "You are buying vehicles because fights feel messy",
+    fix: "Confirm the mess is really a vehicle problem and not a positioning or suppression problem first.",
+  },
+];
+
+const faqs = [
+  {
+    question: "What is the best thing to buy first on the black market?",
+    answer:
+      "Usually the purchase that removes the campaign's next bottleneck: often roster depth or sustain before premium gear.",
+  },
+  {
+    question: "Why are precise black market formulas misleading?",
+    answer:
+      "Because market value is contextual. A perfect deal on the wrong item is still a bad campaign decision.",
+  },
+  {
+    question: "What is the most common black market mistake?",
+    answer:
+      "Buying for excitement instead of for bottleneck removal.",
+  },
+];
 
 export default function BlackMarketPage() {
   return (
@@ -11,83 +103,73 @@ export default function BlackMarketPage() {
       <h1 className="text-3xl sm:text-4xl font-extrabold font-heading mb-2">
         Black <span className="text-accent">Market</span> Guide
       </h1>
-      <p className="text-text-muted mb-10 max-w-2xl">
-        The Black Market is your primary source of weapons, armor, vehicles, and recruits. Master
-        the barter system to build an unstoppable strike force.
+      <p className="text-text-muted mb-10 max-w-3xl leading-relaxed">
+        This page is not a fake barter-rule spreadsheet. The black market matters because it is the
+        place where you choose which campaign weakness gets fixed next: shallow bench, weak sustain,
+        missing weapon role, or overpriced ambition. The right purchase is the one that changes the
+        next stretch of operations, not the one that looks most exciting in the moment.
       </p>
 
-      <div className="faq-snippets mb-8">
-        <h2 className="text-xl font-bold mb-4 font-heading"><span className="text-accent">#</span> FAQ</h2>
-        <details>
-          <summary>How does the barter system work?</summary>
-          <p>MENACE uses a barter economy — no currency. Each item has a Trade Value. To purchase, offer items matching or exceeding the target&apos;s value. Excess value is lost (no change given). Jean Sy&apos;s Economics perk provides a 15% discount on all purchases.</p>
-        </details>
-        <details>
-          <summary>When does the Black Market refresh?</summary>
-          <p>Inventory refreshes after every completed operation. Always check the market between operations — rare items appear randomly and won&apos;t wait. Recruitment Drive items (manpower replenishment) restock every refresh and should be purchased regularly.</p>
-        </details>
-        <details>
-          <summary>What are the best items to buy?</summary>
-          <p>Priority order: 1) Squad Leader recruitment files (permanent roster expansion), 2) Manpower replenishment items (sustain your forces), 3) Premium weapons (R228A1 MRS, BR6A1 HaMER), 4) Vehicles for squad support, 5) Armor upgrades for survivability.</p>
-        </details>
-      </div>
-
-      <div className="space-y-6">
-        <section className="p-5 rounded-xl border border-border bg-surface">
-          <h2 className="text-lg font-bold font-heading mb-3"><span className="text-accent">01</span> Market Mechanics</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-text-muted">
-            <div>
-              <h3 className="font-semibold text-accent-secondary mb-2">Barter System</h3>
-              <p className="leading-relaxed">Trade items by matching Trade Value. Your offered items&apos; total value must ≥ the target item&apos;s value. There is no change — overpaying wastes resources. Use cheap throwaway items (scrap weapons, basic armor) to balance out trade values precisely.</p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-accent-secondary mb-2">Inventory Refresh</h3>
-              <p className="leading-relaxed">The market resets its inventory after each operation completion. Items are randomly generated with rarity tiers. Some items (Recruitment Drive, basic ammo) always appear. Premium items appear less frequently — buy them when you see them.</p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-accent-secondary mb-2">Jean Sy&apos;s Discount</h3>
-              <p className="leading-relaxed">Recruiting Jean Sy provides a permanent 15% discount on all Black Market purchases. Over a full campaign, this saves thousands in trade value. Even if you never deploy Sy in combat, his economic value alone justifies recruitment.</p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-accent-secondary mb-2">Item Categories</h3>
-              <p className="leading-relaxed">The market sells: Squad Leader files, weapons (all types), armor and accessories, vehicles, ammo, explosives, drugs/meds, drones, and miscellaneous gear. Each category has its own rarity distribution and price range.</p>
-            </div>
-          </div>
-        </section>
-
-        <section className="p-5 rounded-xl border border-border bg-surface">
-          <h2 className="text-lg font-bold font-heading mb-3"><span className="text-accent">02</span> Buying Priority</h2>
-          <div className="space-y-3">
-            {[
-              { title: "S-Tier Priority: Squad Leader Files", desc: "New leaders expand your roster, enable rotation, and prevent Fatigue. Always buy leader files when available. Even lower-tier leaders provide value through faction access or unique perks." },
-              { title: "A-Tier Priority: Manpower Items", desc: "Recruitment Drive and similar items replenish your troop pool. Running out of manpower means under-strength squads. Buy these every refresh to maintain a healthy reserve." },
-              { title: "B-Tier Priority: Premium Weapons", desc: "R228A1 MRS, BR6A1 HaMER, MP11A2 HIG Oktagon, SR41 KASS — these weapons dramatically increase squad effectiveness. Buy when you can afford them." },
-              { title: "C-Tier Priority: Vehicles", desc: "Vehicles are powerful but expensive in both trade value and supply cost. Start with a cheap Pirate Truck or A-ATV. Upgrade to Battle Tank or Medium Walker in the late game." },
-              { title: "D-Tier Priority: Armor & Accessories", desc: "Armor provides survivability but is less impactful than better weapons. Upgrade armor after securing your weapon loadout. SAPP Operator and Marine Infantry Body Armor are the best value picks." },
-            ].map((item, i) => (
-              <div key={i} className="p-3 rounded-lg bg-surface-hover">
-                <h3 className="text-sm font-semibold text-accent">{item.title}</h3>
-                <p className="text-xs text-text-muted mt-1 leading-relaxed">{item.desc}</p>
-              </div>
+      <section className="mb-10 overflow-x-auto rounded-xl border border-border bg-surface">
+        <table className="w-full text-sm">
+          <thead>
+            <tr className="border-b border-border bg-surface-hover">
+              <th className="p-4 text-left font-semibold">Priority</th>
+              <th className="p-4 text-left font-semibold">Buy It For</th>
+              <th className="p-4 text-left font-semibold">Bad Version</th>
+            </tr>
+          </thead>
+          <tbody>
+            {marketPriorities.map((row) => (
+              <tr key={row.priority} className="border-b border-border/60">
+                <td className="p-4 font-semibold text-text-primary">{row.priority}</td>
+                <td className="p-4 text-text-muted">{row.buyFor}</td>
+                <td className="p-4 text-text-muted">{row.badVersion}</td>
+              </tr>
             ))}
-          </div>
-        </section>
+          </tbody>
+        </table>
+      </section>
 
-        <section className="p-5 rounded-xl border border-border bg-surface">
-          <h2 className="text-lg font-bold font-heading mb-3"><span className="text-accent">03</span> Selling Strategy</h2>
-          <p className="text-sm text-text-muted leading-relaxed mb-4">
-            You acquire loot from missions — captured enemy weapons, scavenged armor, and miscellaneous items.
-            Sell items you won&apos;t use to fund purchases. Prioritize selling:
-          </p>
-          <ul className="space-y-2 text-sm text-text-muted">
-            <li className="flex gap-2"><span className="text-accent">&#10003;</span> Duplicate weapons and armor you already have better versions of</li>
-            <li className="flex gap-2"><span className="text-accent">&#10003;</span> Pirate weapons — high trade value but unreliable in combat</li>
-            <li className="flex gap-2"><span className="text-accent">&#10003;</span> Drugs and consumables you won&apos;t use (keep Haemocetan and Travodin)</li>
-            <li className="flex gap-2"><span className="text-accent">&#10003;</span> Captured enemy vehicles you don&apos;t need — good trade value</li>
-            <li className="flex gap-2"><span className="text-red-400">&#10007;</span> Never sell: Squad Leader recruitment files, manpower items, premium ammo</li>
-          </ul>
-        </section>
-      </div>
+      <section className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
+        {marketRules.map((rule) => (
+          <div key={rule.title} className="p-5 rounded-xl border border-border bg-surface">
+            <h2 className="text-lg font-bold font-heading mb-2">{rule.title}</h2>
+            <p className="text-sm text-text-muted leading-relaxed">{rule.body}</p>
+          </div>
+        ))}
+      </section>
+
+      <section className="mb-10 overflow-x-auto rounded-xl border border-border bg-surface">
+        <table className="w-full text-sm">
+          <thead>
+            <tr className="border-b border-border bg-surface-hover">
+              <th className="p-4 text-left font-semibold">If This Keeps Happening</th>
+              <th className="p-4 text-left font-semibold">Usually Buy or Reprioritize This</th>
+            </tr>
+          </thead>
+          <tbody>
+            {marketChecks.map((row) => (
+              <tr key={row.check} className="border-b border-border/60">
+                <td className="p-4 font-semibold text-text-primary">{row.check}</td>
+                <td className="p-4 text-text-muted">{row.fix}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="text-xl font-bold font-heading">
+          <span className="text-accent">#</span> FAQ
+        </h2>
+        {faqs.map((faq) => (
+          <details key={faq.question}>
+            <summary>{faq.question}</summary>
+            <p>{faq.answer}</p>
+          </details>
+        ))}
+      </section>
     </div>
   );
 }

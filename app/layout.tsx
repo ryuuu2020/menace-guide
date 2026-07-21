@@ -40,6 +40,13 @@ export const metadata: Metadata = {
     description: SITE_DESCRIPTION,
     type: "website",
     siteName: "MENACE Guide",
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: SITE_TITLE }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    images: ['/og-image.png'],
   },
   robots: {
     index: true,
@@ -68,7 +75,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: `{"@context": "https://schema.org", "@type": "WebSite", "name": "MENACE Guide", "url": "https://menace-guide.vercel.app"}`
+            __html: `{"@context": "https://schema.org", "@type": "WebSite", "name": "MENACE Guide", "url": "https://menace.gguidehub.com"}`
           }}
         />
 
@@ -112,7 +119,7 @@ export default function RootLayout({
             {/* Bottom info */}
             <div className="p-4 border-t border-border-subtle">
               <p className="text-[11px] font-mono text-text-muted">MENACE Guide</p>
-              <p className="text-[10px] font-mono text-text-muted mt-0.5">v1.0.0</p>
+              <p className="text-[10px] font-mono text-text-muted mt-0.5">v1.1.0</p>
             </div>
           </aside>
 
@@ -136,8 +143,8 @@ export default function RootLayout({
               <div className="flex-1" />
 
               {/* Support Us link */}
+              <a href="https://store.steampowered.com/app/2432860/?curator_clanid=46198091" target="_blank" rel="noopener noreferrer" className="steam-buy-btn">Buy MENACE on Steam</a>
               <a href="https://app.unifans.io/c/ryu2020" target="_blank" rel="noopener noreferrer" className="text-[11px] font-mono text-text-muted hover:text-tactical-blue transition-colors mr-3">
-                <a href="https://store.steampowered.com/app/2432860/?curator_clanid=46198091/?curator_clanid=46198091" target="_blank" rel="noopener noreferrer" className="steam-buy-btn">Buy MENACE on Steam</a>
                 Support us on UniFans
               </a>
 
@@ -157,14 +164,12 @@ export default function RootLayout({
             <footer className="border-t border-border-subtle bg-abyss">
               <div className="max-w-6xl mx-auto px-4 lg:px-6 py-6">
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-                  <div className="text-[11px] font-mono text-text-muted">
-                    <span>&copy; {new Date().getFullYear()} MENACE Guide. </span>
-              <span className="font-body text-sm text-stone">
-                <div className="steam-buy-footer">
-                  <a href="https://store.steampowered.com/app/2432860/?curator_clanid=46198091/?curator_clanid=46198091" target="_blank" rel="noopener noreferrer" className="steam-buy-link">Get MENACE on Steam</a>
-                </div>
-                Part of the <a href="https://gguidehub.com" className="text-stone hover:text-bark underline underline-offset-2 transition-colors">GameGuideHub</a> network
-              </span>
+                  <div className="text-[11px] font-mono text-text-muted flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center">
+                    <span>&copy; {new Date().getFullYear()} · Written by the GameGuideHub Team · Last updated {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })} MENACE Guide. </span>
+                    <a href="https://store.steampowered.com/app/2432860/?curator_clanid=46198091" target="_blank" rel="noopener noreferrer" className="steam-buy-link">Get MENACE on Steam</a>
+                    <span className="font-body text-sm text-stone">
+                      Part of the <a href="https://gguidehub.com" className="text-stone hover:text-bark underline underline-offset-2 transition-colors">GameGuideHub</a> network
+                    </span>
                     <span className="text-text-muted/50">
                       Unofficial fan guide for MENACE by Overhype Studios / Hooded Horse.
                     </span>
@@ -182,6 +187,7 @@ export default function RootLayout({
                     >
                       Privacy
                     </Link>
+                    <a href="https://gguidehub.com/contact" className="text-[11px] font-mono text-text-muted hover:text-text-secondary transition-colors">Contact</a>
                     <Link
                       href="/terms"
                       className="text-[11px] font-mono text-text-muted hover:text-text-secondary transition-colors"
@@ -198,7 +204,7 @@ export default function RootLayout({
                   </p>
                   <div className="flex flex-wrap gap-3">
                     <a
-                      href="https://olden-era-guide-tau.vercel.app"
+                      href="https://oldenera.gguidehub.com"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-[11px] font-mono text-text-muted hover:text-tactical-blue transition-colors"
@@ -206,7 +212,7 @@ export default function RootLayout({
                       Olden Era Guide
                     </a>
                     <a
-                      href="https://dispatch-guide-sigma.vercel.app"
+                      href="https://dispatch.gguidehub.com"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-[11px] font-mono text-text-muted hover:text-tactical-blue transition-colors"
@@ -214,7 +220,7 @@ export default function RootLayout({
                       Dispatch Guide
                     </a>
                     <a
-                      href="https://tabletop-tavern-guide.vercel.app"
+                      href="https://tabletoptavern.gguidehub.com"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-[11px] font-mono text-text-muted hover:text-tactical-blue transition-colors"
@@ -246,9 +252,9 @@ export default function RootLayout({
               {/* E-E-A-T: Sources & Last Updated */}
               <div className="mt-4 pt-4 border-t border-clay/30">
                 <p className="font-body text-xs text-stone text-center">
-                  <strong>Sources:</strong> All guides are based on the <a href="https://store.steampowered.com/app/2432860/?curator_clanid=46198091/?curator_clanid=46198091" target="_blank" rel="noopener noreferrer" className="text-terracotta hover:underline">Steam patch notes</a>, community testing, and gameplay experience.
+                  <strong>Sources:</strong> All guides are based on the <a href="https://store.steampowered.com/app/2432860/?curator_clanid=46198091" target="_blank" rel="noopener noreferrer" className="text-terracotta hover:underline">Steam patch notes</a>, community testing, and gameplay experience.
                 </p>
-                <p className="font-body text-xs text-stone text-center mt-1">Last updated: June 2026</p>
+                <p className="font-body text-xs text-stone text-center mt-1">Last updated: July 2026</p>
               </div>
 
             </footer>

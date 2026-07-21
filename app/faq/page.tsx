@@ -1,119 +1,204 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "MENACE FAQ — Frequently Asked Questions & Answers",
-  description: "Complete MENACE FAQ answering the most common questions from new and experienced commanders. Covers combat, squad management, Black Market, O.C.I. upgrades, faction strategy, and more.",
+  title: "MENACE FAQ — Route by Burden, Not Fake Universal Tips",
+  description:
+    "A practical MENACE FAQ that classifies common campaign questions by burden, mission fit, squad structure, and economy pressure instead of pretending one tip sheet solves every run.",
 };
 
-const FAQ_ITEMS = [
+const diagnosisRows = [
   {
-    q: "What is the best starting faction in MENACE?",
-    a: "There is no universally best faction — each has distinct strengths. The Colonial Defense Force is the most beginner-friendly: balanced units, straightforward upgrades, and no unusual mechanics to learn. The Syndicate offers the strongest late-game economy through Black Market bonuses. The Frontier Militia excels in early-game aggression with cheap, fast units. Pick based on your preferred playstyle, not tier lists. You can complete the campaign with any faction on any difficulty.",
+    symptom: "Ordinary missions feel harder than boss moments",
+    realProblem: "Openings, visibility, or recovery structure are failing before the squad can stabilize.",
+    firstReads: "Mission Difficulty, Missions, Combat",
   },
   {
-    q: "How do I earn Credits efficiently?",
-    a: "Credits come from three main sources: mission completion (primary), Black Market trading (secondary), and salvage from destroyed enemies (tertiary). For maximum credit income, always accept bonus objectives on missions — they often pay 50-100 percent of the base mission reward. Sell damaged equipment you do not plan to repair at the Black Market. Salvage every battlefield after combat — unclaimed salvage disappears when you leave the mission area.",
+    symptom: "Squads win but the roster gets thinner every operation",
+    realProblem: "Victories are too expensive and the campaign floor is decaying under the win screen.",
+    firstReads: "Campaign Guide, Resources, Best Team Comps",
   },
   {
-    q: "What are O.C.I. Upgrades and which should I prioritize?",
-    a: "O.C.I. (Operational Command Interface) upgrades are permanent enhancements to your entire squad. Priority order: Tactical Analysis (increases all squad accuracy) → Field Repairs (passive armor repair between missions) → Logistics Network (increases mission credit rewards) → Advanced Targeting (increases crit chance). Tactical Analysis first because accuracy is the most impactful stat — hitting more shots means faster kills, less damage taken, and fewer resources spent on repairs.",
+    symptom: "Research looks good but nothing important changes",
+    realProblem: "Spending is aimed at prestige instead of the current bottleneck.",
+    firstReads: "Research Priority, OCI Upgrades, Resources",
   },
   {
-    q: "How does suppression work and why is it important?",
-    a: "Suppression is a debuff applied by heavy weapons (machine guns, autocannons) and certain abilities. A suppressed enemy has reduced accuracy, reduced movement range, and cannot use special abilities. Suppression is the most powerful form of crowd control in MENACE — a suppressed enemy squad is essentially neutralized for the turn. Always bring at least one suppression-capable unit (Heavy Gunner or Support with suppressive fire) on every mission.",
+    symptom: "The briefing feels readable but the fight still unravels",
+    realProblem: "Role coverage or turn sequencing is breaking under real contact pressure.",
+    firstReads: "Builds, Squad Composition, Tactics",
+  },
+];
+
+const routeCards = [
+  {
+    title: "I keep losing ordinary missions",
+    body:
+      "That is usually a read or structure problem before it is a raw damage problem. Start with mission pressure and opening discipline instead of hunting for a late-game miracle answer.",
+    links: [
+      { label: "Mission Difficulty", href: "/mission-difficulty-guide" },
+      { label: "Missions", href: "/missions" },
+      { label: "Combat", href: "/combat" },
+    ],
   },
   {
-    q: "Should I specialize my squad members or make them versatile?",
-    a: "Specialize. A squad of four specialists outperforms a squad of four generalists in every scenario. Each squad member should excel at one role: Tank (high armor, taunt abilities), Damage Dealer (maximized weapon skill and crit), Support (healing, buffs, suppression), and Scout (high mobility, recon abilities). The synergy of four specialists covering each other&apos;s weaknesses is far more effective than four characters who are mediocre at everything.",
+    title: "I win missions but the campaign still gets worse",
+    body:
+      "Your wins are too costly. If manpower, rotation depth, or authority strain keep worsening, the campaign is already telling you the current squad packages are not preserving the future.",
+    links: [
+      { label: "Campaign Guide", href: "/campaign-guide" },
+      { label: "Resources", href: "/resources" },
+      { label: "Best Team Comps", href: "/best-team-comps" },
+    ],
   },
   {
-    q: "What is the Black Market and when should I use it?",
-    a: "The Black Market is a rotating shop that appears between missions, offering rare equipment, weapons, and upgrades that are not available through standard vendors. Prices are volatile — the same item can cost 50 percent more or less depending on market conditions. Check the Black Market after every mission. Buy when prices are below average (marked green), sell your salvage when prices are above average (marked red). Never buy at peak prices unless the item is critical to your build.",
+    title: "My squads look strong on paper but play badly",
+    body:
+      "Paper power often hides bad job coverage, wrong leader fit, or a build that only works on calm maps. Fix structure before adding more premium gear.",
+    links: [
+      { label: "Squad Composition", href: "/squad-composition-guide" },
+      { label: "Builds", href: "/builds" },
+      { label: "Tactics", href: "/tactics" },
+    ],
   },
   {
-    q: "How do I beat the final boss?",
-    a: "The final boss fight tests everything you have learned. Key preparation: upgrade all squad members&apos; primary weapons to maximum tier, bring at least 3 EMP Grenades (boss has powerful shields), equip your tank with the highest-tier armor available, and stock 5+ Medkits. During the fight: the boss alternates between attack phase (high damage, vulnerable to damage) and shield phase (invulnerable, summons adds). Suppress the adds during shield phase, burst the boss during attack phase. Do not waste heavy cooldowns on the shield phase.",
+    title: "My upgrades feel impressive but not useful",
+    body:
+      "That usually means you bought prestige before relief. The right spend should remove the tax you keep paying in the next several briefings.",
+    links: [
+      { label: "Research Priority", href: "/research-priority" },
+      { label: "OCI Upgrades", href: "/oci-upgrades" },
+      { label: "Black Market Economy", href: "/black-market-economy" },
+    ],
+  },
+];
+
+const misconceptions = [
+  {
+    myth: "There is one universal best squad or best leader package.",
+    truth:
+      "MENACE changes the answer with mission shape, map tax, roster condition, and campaign timing. Stable recommendations must explain fit, not hide it.",
   },
   {
-    q: "What are the most common mistakes new players make?",
-    a: "The top five: (1) ignoring cover — standing in the open multiplies incoming damage by 2-3x; (2) spreading upgrades too thin — focus on 4 core squad members, not 8 under-equipped ones; (3) hoarding consumables — use grenades and medkits when you need them, they are replaceable; (4) skipping side missions — they provide credits and XP that make main missions significantly easier; (5) not reading enemy abilities — each enemy type has unique mechanics that the in-game tooltip explains. Hover over every new enemy before engaging.",
+    myth: "If I lose, I probably just need more damage.",
+    truth:
+      "A large share of failure comes from bad reads, awkward turns, weak recovery, or expensive contact, not from missing one more premium weapon.",
   },
   {
-    q: "How important is positioning in MENACE combat?",
-    a: "Positioning is at least as important as your squad&apos;s stats. High ground provides 15 percent accuracy and 10 percent damage bonuses. Cover reduces incoming damage by 25-50 percent. Flanking an enemy (attacking from the side or rear) grants 20 percent crit chance and ignores directional armor bonuses. A well-positioned squad of mid-tier units will outperform a poorly-positioned squad of elite units. Always spend the first turn of combat establishing good positions before engaging.",
+    myth: "Winning a mission proves the plan was good.",
+    truth:
+      "Campaign health matters. A costly win that hollows the roster can be worse than a cleaner lower-reward route.",
+  },
+];
+
+const faqs = [
+  {
+    question: "What should I learn first in MENACE?",
+    answer:
+      "Learn how to classify mission pressure, recognize when a win is too expensive, and build one honest squad package that does not collapse on average maps. Those three skills pay back faster than any isolated tip list.",
   },
   {
-    q: "Can I respec my squad members later?",
-    a: "Partial respec is available through the O.C.I. Retraining module (unlocked after the mid-game story mission). You can redistribute skill points within the same class at a credit cost, but you cannot change a squad member&apos;s base class. A Heavy Gunner can reallocate points between Suppression and Demolition, but cannot become a Medic. Choose your squad composition carefully at the start — class choices are permanent.",
+    question: "What is the right way to use an FAQ page?",
+    answer:
+      "As a routing page. This page is not a fake universal tips sheet. Use it to map the symptom to the burden behind it, then move to the guide that solves that class of problem.",
+  },
+  {
+    question: "When should I care about advanced optimization?",
+    answer:
+      "After ordinary missions stop draining the campaign. If the floor is still unstable, advanced optimization usually hides the fact that the base structure is weak.",
   },
 ];
 
 export default function FaqPage() {
   return (
     <div className="mx-auto max-w-6xl px-4 py-12">
-      <h1 className="text-3xl sm:text-4xl font-extrabold font-heading mb-2">
-        MENACE <span className="text-accent">FAQ</span>
-      </h1>
-      <p className="text-text-muted mb-10 max-w-2xl">
-        Answers to the most frequently asked questions from MENACE commanders. Whether you are a new player learning the basics or a veteran optimizing your strategy, you will find practical answers here.
-      </p>
-
-      <div className="space-y-4">
-        {FAQ_ITEMS.map((item, i) => (
-          <details key={i} className="p-4 border border-border bg-bg-card">
-            <summary className="font-semibold cursor-pointer hover:text-accent font-heading text-lg">
-              {item.q}
-            </summary>
-            <p className="mt-3 text-text-muted leading-relaxed">{item.a}</p>
-          </details>
-        ))}
+      <div className="max-w-3xl mb-10">
+        <p className="text-xs uppercase tracking-[0.2em] text-text-muted mb-3">Question Routing</p>
+        <h1 className="text-3xl sm:text-4xl font-extrabold font-heading mb-3">
+          MENACE <span className="text-accent">FAQ</span>
+        </h1>
+        <p className="text-text-muted leading-relaxed">
+          A useful FAQ should shorten the gap between the question you ask and the page that can
+          actually fix the campaign. It should not trap you inside a fake all-purpose answer bank.
+        </p>
       </div>
 
-      <div className="mt-10">
-        <h2 className="text-2xl font-bold font-heading mb-4">Key Stats at a Glance</h2>
+      <section className="mb-12">
+        <h2 className="text-2xl font-bold font-heading mb-4">Read the Symptom Before You Read the Tip</h2>
         <div className="overflow-x-auto">
           <table className="w-full text-left border border-border text-sm">
             <thead className="bg-bg-card">
               <tr>
-                <th className="p-3 border border-border">Topic</th>
-                <th className="p-3 border border-border">Priority</th>
-                <th className="p-3 border border-border">Why</th>
+                <th className="p-3 border border-border">Common Symptom</th>
+                <th className="p-3 border border-border">Real Problem Class</th>
+                <th className="p-3 border border-border">Start Here</th>
               </tr>
             </thead>
             <tbody>
-              <tr className="hover:bg-bg-card">
-                <td className="p-3 border border-border font-semibold">O.C.I. Upgrades</td>
-                <td className="p-3 border border-border text-accent">Highest</td>
-                <td className="p-3 border border-border text-text-muted">Permanent squad-wide bonuses compound over the entire campaign</td>
-              </tr>
-              <tr className="hover:bg-bg-card">
-                <td className="p-3 border border-border font-semibold">Weapon Upgrades</td>
-                <td className="p-3 border border-border text-accent">High</td>
-                <td className="p-3 border border-border text-text-muted">More damage = faster kills = less damage taken</td>
-              </tr>
-              <tr className="hover:bg-bg-card">
-                <td className="p-3 border border-border font-semibold">Armor Upgrades</td>
-                <td className="p-3 border border-border text-accent">High</td>
-                <td className="p-3 border border-border text-text-muted">Survivability prevents squad member injuries and recovery downtime</td>
-              </tr>
-              <tr className="hover:bg-bg-card">
-                <td className="p-3 border border-border font-semibold">Consumables</td>
-                <td className="p-3 border border-border text-text-muted">Medium</td>
-                <td className="p-3 border border-border text-text-muted">Buy when needed, not for stockpiling</td>
-              </tr>
-              <tr className="hover:bg-bg-card">
-                <td className="p-3 border border-border font-semibold">Cosmetics</td>
-                <td className="p-3 border border-border text-text-muted">Low</td>
-                <td className="p-3 border border-border text-text-muted">Spend credits on power, not appearance — at least until endgame</td>
-              </tr>
+              {diagnosisRows.map((row) => (
+                <tr key={row.symptom} className="align-top">
+                  <td className="p-3 border border-border font-semibold">{row.symptom}</td>
+                  <td className="p-3 border border-border text-text-muted">{row.realProblem}</td>
+                  <td className="p-3 border border-border text-text-muted">{row.firstReads}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
-      </div>
+      </section>
 
-      <p className="text-text-muted mt-10 text-sm border-t border-border pt-4">
-        Last updated: July 1, 2026. FAQ answers verified against MENACE current version.
-      </p>
+      <section className="mb-12 grid grid-cols-1 md:grid-cols-2 gap-4">
+        {routeCards.map((item) => (
+          <div key={item.title} className="p-5 border border-border bg-bg-card">
+            <h2 className="font-semibold font-heading text-lg mb-2">{item.title}</h2>
+            <p className="text-text-muted leading-relaxed mb-4">{item.body}</p>
+            <div className="flex flex-wrap gap-4 text-sm">
+              {item.links.map((link) => (
+                <Link key={link.href} href={link.href} className="text-accent hover:underline">
+                  {link.label} →
+                </Link>
+              ))}
+            </div>
+          </div>
+        ))}
+      </section>
+
+      <section className="mb-12">
+        <h2 className="text-2xl font-bold font-heading mb-4">Misconceptions This FAQ Should Stop</h2>
+        <div className="space-y-4">
+          {misconceptions.map((item) => (
+            <div key={item.myth} className="p-5 border border-border bg-bg-card">
+              <h3 className="font-semibold text-white mb-2">{item.myth}</h3>
+              <p className="text-text-muted leading-relaxed">{item.truth}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="space-y-4 mb-12">
+        <h2 className="text-xl font-bold font-heading">
+          <span className="text-accent">#</span> FAQ
+        </h2>
+        {faqs.map((faq) => (
+          <div key={faq.question} className="p-5 border border-border bg-bg-card">
+            <h3 className="font-semibold text-lg mb-2">{faq.question}</h3>
+            <p className="text-text-muted leading-relaxed">{faq.answer}</p>
+          </div>
+        ))}
+      </section>
+
+      <div className="mt-8 flex flex-wrap gap-4 text-sm">
+        <Link href="/mission-difficulty-guide" className="text-accent hover:underline">
+          Mission Difficulty →
+        </Link>
+        <Link href="/campaign-guide" className="text-accent hover:underline">
+          Campaign Guide →
+        </Link>
+        <Link href="/resources" className="text-accent hover:underline">
+          Resources →
+        </Link>
+      </div>
+      <p className="text-text-muted mt-10 text-sm border-t border-border pt-4">Last updated: July 12, 2026.</p>
     </div>
   );
 }

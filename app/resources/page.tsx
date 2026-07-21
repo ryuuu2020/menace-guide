@@ -1,108 +1,220 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Resource Management — Supply, Authority & Manpower",
-  description: "Complete MENACE resource management guide: Supply Cost optimization, Authority management, manpower conservation, O.C.I. components, and promotion point strategy.",
+  title: "MENACE Resource Management — Spend to Remove the Next Bottleneck",
+  description:
+    "A practical MENACE resource guide covering supply, authority, manpower, promotions, and OCI spending based on campaign bottlenecks rather than fake max-value formulas.",
 };
+
+const resources = [
+  {
+    resource: "Supply",
+    role:
+      "Determines how much quality and flexibility your squads can field without starving the rest of the roster.",
+    spend:
+      "Spend when better equipment or cleaner deployment genuinely changes the next stretch of missions.",
+    trap:
+      "One showcase squad looks great while the bench quietly loses coverage and resilience.",
+  },
+  {
+    resource: "Authority",
+    role:
+      "Controls how aggressively you can recruit, rotate, and absorb command strain without destabilizing the campaign structure.",
+    spend:
+      "Spend when a command decision solves a real roster bottleneck rather than adding one more interesting option.",
+    trap:
+      "You keep buying choices faster than the campaign can support disciplined use of them.",
+  },
+  {
+    resource: "Manpower",
+    role:
+      "Represents whether ugly wins remain recoverable or start turning into delayed collapse.",
+    spend:
+      "Spend when the mission value is real and the casualty cost prevents a worse future problem.",
+    trap:
+      "Victories look successful on paper, but every success makes the next deployment shakier.",
+  },
+  {
+    resource: "Promotion points",
+    role:
+      "Turn dependable leaders into real anchors, but only when concentrated where they change future missions.",
+    spend:
+      "Spend where promotions remove recurring weakness or create a stable core for several upcoming fights.",
+    trap:
+      "You are polishing favorites while the bench remains too shallow to carry the campaign.",
+  },
+  {
+    resource: "OCI investment",
+    role:
+      "Shapes ship-side support quality: information, conversion help, or sustain across multiple operations.",
+    spend:
+      "Spend when support upgrades improve several upcoming missions rather than decorating one.",
+    trap:
+      "This page is not a fake resource-maxing spreadsheet. Ship upgrades are overrated when ground play is still failing for simpler reasons.",
+  },
+];
+
+const planningRules = [
+  {
+    title: "Spend to remove the next bottleneck",
+    body:
+      "MENACE is not about maximizing every number at once. The useful question is whether the next real danger is weak coverage, shallow manpower, poor authority discipline, or lack of support quality.",
+  },
+  {
+    title: "Bench depth is a strategic resource",
+    body:
+      "A run with one strong squad and no healthy follow-up path is weaker than it looks. Resource policy should protect more than one deployable future.",
+  },
+  {
+    title: "Ugly wins still cost the campaign",
+    body:
+      "If success keeps draining manpower, authority, or repair margin, the resource problem is already live even before you see a dramatic defeat.",
+  },
+  {
+    title: "Avoid split spending across every system",
+    body:
+      "Half-solving five problems usually means solving none. Pick the spend that most directly stabilizes the next few operations.",
+  },
+];
+
+const campaignStates = [
+  {
+    state: "Squads feel under-equipped but the bench still matters",
+    priority: "Protect supply efficiency before loading one team to the ceiling.",
+  },
+  {
+    state: "Recruitment options look tempting but command feels stretched",
+    priority: "Respect authority and role fit more than novelty.",
+  },
+  {
+    state: "Missions are being won at painful casualty cost",
+    priority: "Treat manpower preservation as urgent, not optional.",
+  },
+  {
+    state: "The roster is coherent but hard fights still stall",
+    priority: "Use promotions and OCI where they create stable conversion rather than cosmetic improvement.",
+  },
+];
+
+const faqs = [
+  {
+    question: "What resource matters most in MENACE?",
+    answer:
+      "Whichever one is currently bottlenecking the campaign. Early on that is often supply or authority discipline; later it is frequently manpower depth or the ability to strengthen the right anchors.",
+  },
+  {
+    question: "Why do campaigns collapse after several apparent wins?",
+    answer:
+      "Because the wins were too expensive. Resource collapse often appears first as shallow benches, strained follow-up deployments, and weak reserves before one dramatic defeat makes it obvious.",
+  },
+  {
+    question: "What is the most common resource mistake?",
+    answer:
+      "Trying to maximize every category at once instead of deciding what the next stretch of missions actually needs.",
+  },
+];
 
 export default function ResourcesPage() {
   return (
     <div className="mx-auto max-w-6xl px-4 py-12">
-      <h1 className="text-3xl sm:text-4xl font-extrabold font-heading mb-2">
-        Resource <span className="text-accent">Management</span>
-      </h1>
-      <p className="text-text-muted mb-10 max-w-2xl">
-        Master MENACE&apos;s four core resources: Supply Cost, Authority, Manpower, and O.C.I. components.
-        Efficient resource management is the difference between victory and defeat.
-      </p>
-
-      <div className="faq-snippets mb-8">
-        <h2 className="text-xl font-bold mb-4 font-heading"><span className="text-accent">#</span> FAQ</h2>
-        <details>
-          <summary>How do I manage Supply Cost efficiently?</summary>
-          <p>Each mission has a supply cap. Better gear costs more supply, limiting how many squads you can deploy. Balance quality vs quantity — two well-equipped squads often outperform one ultra-elite squad. Use low-cost leaders (Jean Sy, Marta Carda) to free supply for other squads.</p>
-        </details>
-        <details>
-          <summary>What happens if I run out of manpower?</summary>
-          <p>Squads deploy under-strength, reducing firepower and survivability. Always maintain a healthy manpower reserve through Black Market Recruitment Drive purchases. Lost soldiers are gone permanently — protect your experienced troops.</p>
-        </details>
-        <details>
-          <summary>How important is Authority?</summary>
-          <p>Authority governs discipline across your fleet and is spent to recruit new squad leaders. Low authority = reduced squad discipline and vulnerability to suppression. Balance recruitment spending against maintaining a strong authority pool.</p>
-        </details>
+      <div className="max-w-3xl mb-10">
+        <p className="text-xs uppercase tracking-[0.2em] text-text-muted mb-3">Campaign Economy</p>
+        <h1 className="text-3xl sm:text-4xl font-extrabold font-heading mb-3">
+          Resource <span className="text-accent">Management</span>
+        </h1>
+        <p className="text-text-muted leading-relaxed">
+          Resource management in MENACE is useful only when it helps you remove the next real
+          campaign bottleneck. Bigger numbers do not matter by themselves. Stable follow-up
+          deployments, healthy bench depth, and cleaner upcoming missions do.
+        </p>
       </div>
 
-      <div className="space-y-6">
-        {[
-          {
-            title: "Supply Cost",
-            desc: "Supply determines how much equipment you can bring per mission. Every weapon, armor piece, and squad member costs supply. Missions have hard supply caps — exceeding them prevents deployment.",
-            strategies: [
-              "Rotate between expensive elite squads and cheap support squads",
-              "Use zero-supply leaders (Jane Darby, Kody Greifinger, Jean Sy) to free budget",
-              "Match equipment to mission difficulty — don&apos;t over-equip for easy missions",
-              "Ammo and consumables add up — only bring what you&apos;ll actually use",
-            ],
-          },
-          {
-            title: "Authority & Discipline",
-            desc: "Authority is your command resource. High authority improves fleet-wide discipline (suppression resistance). Spending authority recruits new leaders — each recruitment reduces the pool.",
-            strategies: [
-              "Maintain Authority above 50% for optimal discipline bonuses",
-              "Only recruit leaders you plan to use — each costs significant Authority",
-              "Dismissing unused leaders refunds Authority — don&apos;t hoard leaders",
-              "Discipline directly affects suppression resistance — high Valor leaders help compensate",
-            ],
-          },
-          {
-            title: "Manpower Pool",
-            desc: "Your total available soldiers. Each squad consumes manpower based on size. Losing soldiers in combat permanently reduces the pool. Manpower replenishment comes from Black Market items and O.C.I. upgrades.",
-            strategies: [
-              "Buy Recruitment Drive items every Black Market refresh",
-              "Prioritize Hull O.C.I. upgrades for passive manpower regeneration",
-              "Protect experienced squads — veteran soldiers are irreplaceable",
-              "Don&apos;t over-expand squad size early — larger squads drain manpower faster",
-            ],
-          },
-          {
-            title: "Promotion Points",
-            desc: "Earned by completing primary and optional mission objectives. Spend them to promote squad leaders, unlocking new skills and stat increases. Promotion costs vary by leader (PCF stat).",
-            strategies: [
-              "Prioritize promotions on high-Growth-Potential leaders (Charles Lim, Marta Carda)",
-              "Complete optional objectives even in easy missions — bonus promotion points add up",
-              "Marta Carda has PCF 0.8 — she&apos;s 20% cheaper to promote than average",
-              "Jane Darby has PCF 1.35 — promotions cost 35% more, choose wisely",
-            ],
-          },
-          {
-            title: "O.C.I. Components",
-            desc: "Upgrade components for the TCRN Impetus ship. Earned through faction operations and mission rewards. Spend on Electronics (intel), Weapons (orbital strikes), or Hull (sustainability).",
-            strategies: [
-              "Electronics first — mission intel is the most impactful upgrade",
-              "Faction-specific O.C.I. upgrades are more expensive but significantly stronger",
-              "Weapons O.C.I. provides limited-use orbital strikes — use sparingly per mission",
-              "Hull O.C.I. (Medical Bay, Vehicle Repair) enables longer operation chains",
-            ],
-          },
-        ].map((res, i) => (
-          <div key={i} className="p-5 rounded-xl border border-border bg-surface">
-            <h2 className="text-lg font-bold font-heading mb-2">
-              <span className="text-accent">0{i + 1}</span> {res.title}
-            </h2>
-            <p className="text-sm text-text-muted leading-relaxed mb-4">{res.desc}</p>
-            <div className="space-y-2">
-              <h3 className="text-xs font-semibold text-accent-secondary">Optimal Strategy:</h3>
-              <ul className="space-y-1.5">
-                {res.strategies.map((s, j) => (
-                  <li key={j} className="text-xs text-text-muted flex gap-2">
-                    <span className="text-accent">&rarr;</span> {s}
-                  </li>
-                ))}
-              </ul>
-            </div>
+      <section className="mb-12">
+        <h2 className="text-xl font-bold font-heading mb-4">
+          <span className="text-accent">#</span> Read Each Resource by What It Unlocks or Endangers
+        </h2>
+        <div className="overflow-x-auto">
+          <table className="w-full text-left border border-border text-sm">
+            <thead className="bg-surface">
+              <tr>
+                <th className="p-3 border border-border">Resource</th>
+                <th className="p-3 border border-border">What It Controls</th>
+                <th className="p-3 border border-border">Spend It When</th>
+                <th className="p-3 border border-border">Trap Signal</th>
+              </tr>
+            </thead>
+            <tbody>
+              {resources.map((row) => (
+                <tr key={row.resource} className="align-top hover:bg-surface">
+                  <td className="p-3 border border-border font-semibold">{row.resource}</td>
+                  <td className="p-3 border border-border text-text-muted">{row.role}</td>
+                  <td className="p-3 border border-border text-accent">{row.spend}</td>
+                  <td className="p-3 border border-border text-text-muted">{row.trap}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section className="space-y-4 mb-12">
+        {planningRules.map((rule) => (
+          <div key={rule.title} className="p-5 rounded-xl border border-border bg-surface">
+            <h2 className="text-lg font-bold font-heading mb-2">{rule.title}</h2>
+            <p className="text-sm text-text-muted leading-relaxed">{rule.body}</p>
           </div>
         ))}
+      </section>
+
+      <section className="mb-12">
+        <h2 className="text-xl font-bold font-heading mb-4">
+          <span className="text-accent">#</span> What to Prioritize by Campaign State
+        </h2>
+        <div className="overflow-x-auto">
+          <table className="w-full text-left border border-border text-sm">
+            <thead className="bg-surface">
+              <tr>
+                <th className="p-3 border border-border">Campaign State</th>
+                <th className="p-3 border border-border">Priority</th>
+              </tr>
+            </thead>
+            <tbody>
+              {campaignStates.map((row) => (
+                <tr key={row.state} className="align-top hover:bg-surface">
+                  <td className="p-3 border border-border font-semibold">{row.state}</td>
+                  <td className="p-3 border border-border text-text-muted">{row.priority}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section className="space-y-4 mb-12">
+        <h2 className="text-xl font-bold font-heading">
+          <span className="text-accent">#</span> FAQ
+        </h2>
+        {faqs.map((faq) => (
+          <div key={faq.question} className="p-5 rounded-xl border border-border bg-surface">
+            <h3 className="font-semibold text-text-primary mb-2">{faq.question}</h3>
+            <p className="text-sm text-text-muted leading-relaxed">{faq.answer}</p>
+          </div>
+        ))}
+      </section>
+
+      <div className="mt-8 flex flex-wrap gap-4 text-sm">
+        <Link href="/campaign-guide" className="text-accent hover:underline">
+          Campaign Guide →
+        </Link>
+        <Link href="/mission-difficulty-guide" className="text-accent hover:underline">
+          Mission Difficulty →
+        </Link>
+        <Link href="/builds" className="text-accent hover:underline">
+          Builds →
+        </Link>
       </div>
+      <p className="text-xs text-text-muted mt-8">Last updated: July 11, 2026</p>
     </div>
   );
 }
